@@ -6,63 +6,58 @@ WAP to print the Fibonacci series of a number
 
 <!DOCTYPE html>
 <html>
-<head>
+  <head>
     <title>Fibonacci Series</title>
-    <style>
-        .output { 
-            margin: 20px;
-            padding: 10px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-        }
-    </style>
-</head>
-<body>
+    <link rel="stylesheet" href="all_at_once.css" />
+  </head>
+  <body>
     <h2>Fibonacci Series Generator</h2>
 
     <script>
-        // Get input from user
-        let terms = parseInt(prompt("Enter number of terms for Fibonacci series:"));
-        
-        function generateFibonacci(n) {
-            // pela building banava payo toh joi ne ...toh paya na 2 num 0, 1 
-            let series = [0, 1];
-            // let steps = [];
-            
-            // have jovo building mate 
-            for (let i = 2; i < n; i++) {
-                // chhela be num levana
-                let lastNumber = series[i - 1];
-                let secondLastNumber = series[i - 2];
-                
-                // have e bey ne umeri dyo aatle pachhi no number aavi gayo 
-                let nextNumber = lastNumber + secondLastNumber;
-                
-                // Add to series
-                series.push(nextNumber);
-                
+      // Get input from user
+      let terms = parseInt(
+        prompt("Enter number of terms for Fibonacci series:")
+      );
 
-                // steps.push(`${secondLastNumber} + ${lastNumber} = ${nextNumber}`);
-            }
-            
-            // return {
-            //     series: series.slice(0, n),
-            //     steps: steps
-            // };
-            return series
+      function generateFibonacci(n) {
+        // pela building banava payo toh joi ne ...toh paya na 2 num 0, 1
+        let series = [0, 1];
+        // let steps = [];
+
+        // have jovo building mate
+        for (let i = 2; i < n; i++) {
+          // chhela be num levana
+          let lastNumber = series[i - 1];
+          let secondLastNumber = series[i - 2];
+
+          // have e bey ne umeri dyo aatle pachhi no number aavi gayo
+          let nextNumber = lastNumber + secondLastNumber;
+
+          // Add to series
+          series.push(nextNumber);
+
+          // steps.push(`${secondLastNumber} + ${lastNumber} = ${nextNumber}`);
         }
 
-        const result = generateFibonacci(terms);
+        // return {
+        //     series: series.slice(0, n),
+        //     steps: steps
+        // };
+        return series;
+      }
 
+      const result = generateFibonacci(terms);
 
-        document.write("<div class='output'>");
-        document.write("<p><b>Number of terms:</b> " + terms + "</p>");
-        document.write("<p><b>Fibonacci Series:</b> " + result.join(", ") + "</p>");
-        document.write("<p><b>Steps:</b></p>");
-        // result.steps.forEach(step => {
-        //     document.write("<p>" + step + "</p>");
-        // });
-        document.write("</div>");
+      document.write("<div class='output'>");
+      document.write("<p><b>Number of terms:</b> " + terms + "</p>");
+      document.write(
+        "<p><b>Fibonacci Series:</b> " + result.join(", ") + "</p>"
+      );
+      document.write("<p><b>Steps:</b></p>");
+      // result.steps.forEach(step => {
+      //     document.write("<p>" + step + "</p>");
+      // });
+      document.write("</div>");
     </script>
-</body>
+  </body>
 </html>

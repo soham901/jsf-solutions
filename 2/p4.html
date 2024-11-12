@@ -1,0 +1,52 @@
+<!-- 
+WAP to check whether the given number is palindrome or not
+
+    A palindrome reads the same backwards as forwards
+-->
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Palindrome Checker</title>
+    <link rel="stylesheet" href="all_at_once.css" />
+  </head>
+  <body>
+    <h2>Palindrome Number Checker</h2>
+
+    <script>
+      const number = prompt("Enter a number to check if it's palindrome:");
+
+      function isPalindrome(num) {
+        // let str = num.toString();
+        // let reversed = str.split("").reverse().join("");
+
+        //jovo if else condition ma original and rev str check karavi ne return chhe k nai te kare chhe ...
+        if (str === reversed) {
+          return true;
+        } else {
+          return false;
+        }
+
+        // return str === reversed;
+
+        //ane pachhi aa function jya call thay chhe tya pan aavi j rite one liner use karyu chhe jovo...
+      }
+
+      document.write("<div class='output'>");
+      document.write("<p><b>Number entered:</b> " + number + "</p>");
+      document.write(
+        "<p><b>Reversed number:</b> " +
+          number.split("").reverse().join("") +
+          "</p>"
+      );
+      document.write(
+        "<p><b>Result:</b> " +
+          number +
+          " is " +
+          // aahiya
+          (isPalindrome(number) ? "a palindrome" : "not a palindrome") +
+          "</p>"
+      );
+      document.write("</div>");
+    </script>
+  </body>
+</html>
