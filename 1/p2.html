@@ -1,0 +1,41 @@
+<!-- 
+WAP to concat two or more strings
+-->
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>String Concatenation</title>
+    <style>
+      .output {
+        margin: 10px 0;
+        padding: 5px;
+      }
+    </style>
+  </head>
+  <body>
+    <h2>String Concatenation Methods</h2>
+
+    <script>
+      const str1 = prompt("Enter first string:", "Hello");
+      const str2 = prompt("Enter second string:", "World");
+
+      // Method 1: Using + operator
+      const result1 = str1 + " " + str2;
+      document.write(result1);
+
+      // Method 2: Using template literals
+      const result2 = `${str1} ${str2}`;
+      document.write(result2);
+
+      // Method 3: Using concat() method
+      const result3 = str1.concat(" ", str2);
+      document.write(result3);
+
+      const firstName = prompt("Enter first name:", "Pavitra");
+      const lastName = prompt("Enter last name:", "Prabhakar");
+
+      const fullName = `${firstName} ${lastName}`;
+      document.write(fullName);
+    </script>
+  </body>
+</html>

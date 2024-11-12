@@ -1,0 +1,64 @@
+<!-- 
+WAP to check whether the given no. is prime or not
+
+    A prime number is only divisible by 1 and itself
+-->
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Prime Number Checker</title>
+    <style>
+        .output { 
+            margin: 20px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <h2>Prime Number Checker</h2>
+
+    <script>
+        let number = parseInt(prompt("Enter a number to check if it's prime:"));
+        
+        function isPrime(num) {
+            // pela, number jovano k 2 karta nano toh nathi ne
+            if (num < 2) {
+                return false;
+            }
+            
+            // pachhi number loop ma check karavtu javanu k number 2 thi lai num-1 sudhi ma koi sathe bhagay chhe ??
+            // joh ha toh e prime no hoy sake
+            for (let i = 2; i < num; i++) {
+                if (num % i == 0) {
+                    return false;
+                }
+            }
+            
+            // ane joh na toh prime chhe [bijo koi rasto pan noto ne bichara pase!!]
+            return true;
+        }
+
+
+        const result = isPrime(number);
+
+        //pela aa if else jovo
+        if (result == true) {
+            const message = "a prime number"
+        } else {
+            message = "not a prime number"
+        }
+
+        //have aa one liner [be a vishal dayama]
+        // const message = result ? "a prime number" : "not a prime number";
+
+
+        document.write("<div class='output'>");
+        document.write("<p><b>Number entered:</b> " + number + "</p>");
+        document.write("<p><b>Result:</b> " + number + " is " + message + "</p>");
+        document.write("</div>");
+    </script>
+</body>
+</html>
