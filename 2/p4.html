@@ -16,10 +16,10 @@ WAP to check whether the given number is palindrome or not
       const number = prompt("Enter a number to check if it's palindrome:");
 
       function isPalindrome(num) {
-        // let str = num.toString();
-        // let reversed = str.split("").reverse().join("");
+        let str = num.toString();
+        let reversed = str.split("").reverse().join("");
 
-        //jovo if else condition ma original and rev str check karavi ne return chhe k nai te kare chhe ...
+        //jovo if else condition ma original and rev str check karavi ne return chhe k nai te kare chhe...
         if (str === reversed) {
           return true;
         } else {
