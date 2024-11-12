@@ -1,0 +1,38 @@
+<!-- 1.1 WAP to make simple calculator using dialogue box -->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Calculator</title>
+  </head>
+  <body>
+    <script>
+      const a = parseInt(prompt("Enter 1st number"));
+      const b = parseInt(prompt("Enter 2nd number"));
+      const op = prompt("Enter operation");
+      let ans;
+
+      switch (op) {
+        case "+":
+          ans = a + b;
+          break;
+        case "-":
+          ans = a - b;
+          break;
+        case "*":
+          ans = a * b;
+          break;
+        case "/":
+          ans = a / b;
+          break;
+        default:
+          alert("Invalid operation");
+      }
+
+      document.write("Your answer is " + ans);
+    </script>
+  </body>
+</html>
