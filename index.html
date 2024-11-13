@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>HTML Practicals</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.16/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body class="bg-gray-100 py-8">
+    <div class="container mx-auto px-4">
+      <h1 class="text-3xl font-bold mb-6">HTML Practicals</h1>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6"></div>
+    </div>
+    <script>
+      fetch("practicals.json")
+        .then((response) => response.json())
+        .then((data) => {
+          const container = document.querySelector(".grid");
+
+          data.forEach((practical) => {
+            const card = document.createElement("a");
+            card.href = practical.path;
+            card.target = "_blank";
+            card.className =
+              "bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300";
+
+            const iframe = document.createElement("iframe");
+
+            iframe.src = practical.path;
+            iframe.className = "w-full h-48";
+            iframe.setAttribute("sandbox", "allow-same-origin"); // Disable JavaScript in the iframe
+
+            const content = document.createElement("div");
+            content.className = "p-4";
+
+            const title = document.createElement("h2");
+            title.className = "text-xl font-semibold mb-2";
+            title.textContent = `Practical ${practical.practical}`;
+
+            const lab = document.createElement("p");
+            lab.className = "text-gray-600";
+            lab.textContent = `Lab ${practical.lab}`;
+
+            content.appendChild(title);
+            content.appendChild(lab);
+
+            card.appendChild(iframe);
+            card.appendChild(content);
+
+            container.appendChild(card);
+          });
+        });
+    </script>
+  </body>
+</html>

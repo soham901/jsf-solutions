@@ -1,0 +1,26 @@
+name: Generate Practicals List Site
+
+on:
+  push:
+    branches: [soham]
+
+jobs:
+  generate-json:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Generate Practicals JSON
+        run: |
+          # Make the script executable
+          chmod +x generate_json.sh
+
+          # Run the script
+          ./generate_json.sh
+
+      - name: Commit and Push JSON File
+        uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          commit_message: Update practicals.json
+          file_pattern: practicals.json
