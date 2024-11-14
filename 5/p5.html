@@ -1,0 +1,34 @@
+<!-- 5. WAP to recognize which keyboard event is fired. -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../common.css" />
+    <title>Document</title>
+  </head>
+  <body style="gap: 1rem">
+    <p>Click any key</p>
+    <p id="msg"></p>
+
+    <script>
+      const msg = document.getElementById("msg");
+
+      document.addEventListener("keydown", function (e) {
+        msg.innerHTML = `You pressed ${e.key}`;
+      });
+
+      document.addEventListener("keyup", function (e) {
+        msg.innerHTML = `You released ${e.key}`;
+      });
+
+      document.addEventListener("keypress", function (e) {
+        msg.innerHTML = `You pressed ${e.key}`;
+      });
+
+      document.addEventListener("contextmenu", function (e) {
+        msg.innerHTML = "You right clicked";
+      });
+    </script>
+  </body>
+</html>

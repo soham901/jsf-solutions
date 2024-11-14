@@ -1,0 +1,28 @@
+<!-- 8. WAP to demonstrate callbacks in JavaScript. -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      function sayHello(name) {
+        console.log("Hello " + name);
+      }
+
+      function sayBye(name) {
+        console.log("Bye " + name);
+      }
+
+      function saySomething(name, callback) {
+        callback(name);
+      }
+
+      saySomething("John", sayHello);
+      saySomething("John", sayBye);
+    </script>
+  </body>
+</html>

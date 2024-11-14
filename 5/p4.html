@@ -1,0 +1,54 @@
+<!-- 4. WAP to recognize which mouse event is fired. -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../common.css" />
+    <title>Document</title>
+  </head>
+  <body style="gap: 1rem">
+    <p id="msg">Click on the button below</p>
+    <button id="btn">Click Me</button>
+    <a
+      target="_blank"
+      href="https://www.javascripttutorial.net/javascript-dom/javascript-mouse-events/"
+    >
+      Docs for Mouse Events
+    </a>
+
+    <script>
+      const button = document.getElementById("btn");
+
+      const msg = document.getElementById("msg");
+
+      button.addEventListener("click", function () {
+        msg.innerHTML = "Mouse Clicked";
+      });
+
+      button.addEventListener("dblclick", function () {
+        msg.innerHTML = "Mouse Double Clicked";
+      });
+
+      button.addEventListener("mousedown", function () {
+        msg.innerHTML = "Mouse Down";
+      });
+
+      button.addEventListener("mouseup", function () {
+        msg.innerHTML = "Mouse Up";
+      });
+
+      button.addEventListener("mouseover", function () {
+        msg.innerHTML = "Mouse Over";
+      });
+
+      button.addEventListener("mouseout", function () {
+        msg.innerHTML = "Mouse Out";
+      });
+
+      button.addEventListener("mousemove", function () {
+        msg.innerHTML = "Mouse Move";
+      });
+    </script>
+  </body>
+</html>
