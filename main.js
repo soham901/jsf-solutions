@@ -54,6 +54,7 @@ const displayLabs = () => {
   elements.labsContainer.classList.remove("hidden");
   elements.practicalsContainer.classList.add("hidden");
   elements.backButton.classList.add("hidden");
+  elements.sortButton.classList.add("hidden");
   elements.title.textContent = "JSF Practicals";
   elements.subtitle.style.display = "";
   elements.counter.textContent = `(${Object.keys(state.labs).length})`;
@@ -69,6 +70,7 @@ const displayPracticals = (lab) => {
   elements.labsContainer.classList.add("hidden");
   elements.practicalsContainer.classList.remove("hidden");
   elements.backButton.classList.remove("hidden");
+  elements.sortButton.classList.remove("hidden");
   elements.title.textContent = `Lab ${lab}`;
   elements.counter.textContent = `(${state.labs[lab].length})`;
   elements.subtitle.style.display = "none";
@@ -128,6 +130,14 @@ const createPracticalCard = (practical) => {
 
 // URL handling
 const updateQueryParam = (lab) => {
+  if (lab === null) {
+    // set empty url
+    const url = new URL(window.location);
+    url.searchParams.delete("lab");
+    window.history.pushState({ lab }, "", url);
+    return;
+  }
+
   const url = new URL(window.location);
   url.searchParams.set("lab", lab);
   window.history.pushState({ lab }, "", url);
@@ -165,7 +175,11 @@ const init = async () => {
     });
 
     // Event listeners
-    elements.backButton.addEventListener("click", displayLabs);
+    elements.backButton.addEventListener("click", () => {
+      displayLabs();
+      // set query param to empty
+      updateQueryParam(null);
+    });
     elements.sortButton.addEventListener("click", toggleSort);
 
     // Initial display
