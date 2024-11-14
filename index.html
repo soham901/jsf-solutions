@@ -72,6 +72,13 @@
       fetch("practicals.json")
         .then((response) => response.json())
         .then((data) => {
+          // sort data in descending order of practical number
+          data.sort((a, b) => {
+            const practicalA = parseInt(a.practical.slice(1));
+            const practicalB = parseInt(b.practical.slice(1));
+            return practicalB - practicalA; // Descending order
+          });
+
           const labsContainer = document.getElementById("labs-container");
           const practicalsContainer = document.getElementById(
             "practicals-container"
@@ -173,7 +180,7 @@
 
           // Back to labs button functionality
           backButton.addEventListener("click", () => {
-            window.location.replace("/");
+            window.location.replace("https://soham901.github.io/jsf-solutions");
           });
 
           checkQueryParam();
