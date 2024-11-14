@@ -2,7 +2,7 @@ name: Generate Practicals List Site
 
 on:
   push:
-    branches: [soham]
+    branches: [main]
 
 jobs:
   generate-json:
