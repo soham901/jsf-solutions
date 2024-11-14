@@ -1,0 +1,53 @@
+<!-- 
+WAP to print prime numbers between the two given numbers
+-->
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Prime Numbers in Range</title>
+    <link rel="stylesheet" href="all_at_once.css" />
+  </head>
+  <body>
+    <h2>Prime Numbers in Range</h2>
+
+    <script>
+      const start = parseInt(prompt("Enter start number:"));
+      const end = parseInt(prompt("Enter end number:"));
+
+      //aa toh aapne pela pan karyu hamna
+      function isPrime(num) {
+        if (num <= 1) return false;
+        if (num === 2) return true;
+        for (let i = 2; i <= Math.sqrt(num); i++) {
+          if (num % i === 0) return false;
+        }
+        return true;
+      }
+
+      // starting num thi lai ek-ek kari end num sudhi badha ma check karyu chhe k beta tu prime chho ? 
+      // joh ha toh array ma te num nakhi didho sambhadi ne 
+      function findPrimesInRange(start, end) {
+        let primes = [];
+        for (let i = start; i <= end; i++) {
+          if (isPrime(i)) primes.push(i);
+        }
+        return primes;
+      }
+
+      const primeNumbers = findPrimesInRange(start, end);
+
+      
+      // aa moh-maya chhe 
+      document.write("<div class='output'>");
+      document.write("<p><b>Range:</b> " + start + " to " + end + "</p>");
+      document.write(
+        "<p><b>Prime numbers:</b> " + primeNumbers.join(", ") + "</p>"
+      );
+      document.write(
+        "<p><b>Count:</b> " + primeNumbers.length + " prime numbers found</p>"
+      );
+      document.write("</div>");
+    </script>
+  </body>
+</html>
