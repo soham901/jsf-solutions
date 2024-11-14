@@ -16,21 +16,28 @@ WAP to check whether the given number is palindrome or not
       const number = prompt("Enter a number to check if it's palindrome:");
 
       function isPalindrome(num) {
-        let str = num.toString();
-        let reversed = str.split("").reverse().join("");
+        const originalNum = num;
+        let reversedNum = 0;
+
+        while (num > 0) {
+          let lastDigit = num % 10;
+          reversedNum = reversedNum * 10 + lastDigit;
+          num = Math.floor(num / 10);
+        }
 
         //jovo if else condition ma original and rev str check karavi ne return chhe k nai te kare chhe...
-        if (str === reversed) {
+        if (str === reversedNum) {
           return true;
         } else {
           return false;
         }
 
-        // return str === reversed;
+        // return str === reversedNum;
 
         //ane pachhi aa function jya call thay chhe tya pan aavi j rite one liner use karyu chhe jovo...
       }
 
+      // aa moh-maya chhe
       document.write("<div class='output'>");
       document.write("<p><b>Number entered:</b> " + number + "</p>");
       document.write(
