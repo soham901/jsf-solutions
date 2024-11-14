@@ -1,0 +1,79 @@
+<!-- 
+WAP to demonstrate use of various inbuilt array functions
+
+    push 
+    pop
+    sort
+    reverse
+-->
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Array Functions Demo</title>
+    <link rel="stylesheet" href="Sub_ki_CSS.css" />
+  </head>
+  <body>
+    <h2>Array Functions Demonstration</h2>
+
+    <script>
+      // example maate ek array lai ...
+      let fruits = ["apple", "banana", "orange"];
+
+      // aana upper dhyan dyo ma
+      document.write("<div class='output'>");
+      document.write("<p><b>Original array:</b> " + fruits.join(", ") + "</p>");
+
+
+
+      // aapne pela joi a push function , [adds to end]
+      fruits.push("grape");
+
+
+
+      //push karya pachhi no array chhe biju kai nai
+      document.write(
+        "<p><b>After push('grape'):</b> " + fruits.join(", ") + "</p>"
+      );
+
+      //////////////////////////////////////////////////////////
+
+      // shu remove karyu aapne te toh khabr padvi joi a ne , toh tene removed naam na variable ma store kari didho khali
+      //  -> [removes from end]
+      let removed = fruits.pop();
+
+
+
+      document.write("<p><b>After pop():</b> " + fruits.join(", ") + "</p>");
+      document.write("<p><b>Removed item:</b> " + removed + "</p>");
+
+
+      /////////////////////////////////////////////////////////
+
+      // aapne je java ane c ma jate loop ni help thi kari te j aa khali ek function thi kari aape chhe
+      fruits.sort();
+      document.write("<p><b>After sort():</b> " + fruits.join(", ") + "</p>");
+
+
+      // sort j chhe pan undhe thi sort kare aatle reverse
+      fruits.reverse();
+      document.write(
+        "<p><b>After reverse():</b> " + fruits.join(", ") + "</p>"
+      );
+      document.write("</div>");
+
+      
+
+      // have number na array upper experiment kari joi a
+      document.write("<div class='output'>");
+      let numbers = [5, 2, 8, 1, 9];
+      document.write("<p><b>Number array:</b> " + numbers.join(", ") + "</p>");
+
+      numbers.sort();
+      document.write("<p><b>After sort():</b> " + numbers.join(", ") + "</p>");
+
+      numbers.push(4);
+      document.write("<p><b>After push(4):</b> " + numbers.join(", ") + "</p>");
+      document.write("</div>");
+    </script>
+  </body>
+</html>
