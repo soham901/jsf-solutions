@@ -9,16 +9,40 @@
   <body class="min-h-screen py-8 px-4 sm:px-6 lg:px-8">
     <div class="max-w-7xl mx-auto">
       <div class="flex flex-col sm:flex-row justify-between items-center mb-8">
-        <header class="mb-10">
-          <h1
-            class="text-4xl font-extrabold text-gray-900 sm:text-2xl sm:tracking-tight lg:text-4xl"
-            id="title"
+        <header class="flex justify-center gap-4">
+          <button
+            id="back-button"
+            class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 hidden"
           >
-            JSF Practicals <span id="count"></span>
-          </h1>
-          <p class="mt-2 text-sm sm:text-xl text-gray-500">
-            Explore and learn from our practical examples
-          </p>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="lucide lucide-arrow-left"
+            >
+              <path d="m12 19-7-7 7-7" />
+              <path d="M19 12H5" />
+            </svg>
+            Back
+          </button>
+
+          <div class="">
+            <h1
+              class="text-4xl font-extrabold text-gray-900 sm:text-2xl sm:tracking-tight lg:text-4xl"
+              id="title"
+            >
+              JSF Practicals <span id="count"></span>
+            </h1>
+            <p class="mt-2 text-sm sm:text-xl text-gray-500">
+              Explore and learn from our practical examples
+            </p>
+          </div>
         </header>
       </div>
 
@@ -33,13 +57,6 @@
         id="practicals-container"
         class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 hidden"
       ></div>
-
-      <button
-        id="back-button"
-        class="mt-8 inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 hidden"
-      >
-        Back to Labs
-      </button>
     </div>
 
     <footer>
@@ -105,6 +122,12 @@
             backButton.classList.remove("hidden");
             title.textContent = `Lab ${lab} (${labs[lab].length})`;
 
+            // hide the paragraph after the title
+            const paragraph = title.nextElementSibling;
+            if (paragraph) {
+              paragraph.style.display = "none";
+            }
+
             practicalsContainer.innerHTML = "";
             labs[lab].forEach((practical) => {
               const card = document.createElement("div");
@@ -150,8 +173,7 @@
 
           // Back to labs button functionality
           backButton.addEventListener("click", () => {
-            updateQueryParam("");
-            displayLabs();
+            window.location.replace("/");
           });
 
           checkQueryParam();
