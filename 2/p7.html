@@ -1,0 +1,79 @@
+<!-- 
+WAP to check whether the given number is Armstrong or not
+
+    An Armstrong number is one where sum of each digit raised to the power of total digits equals the number itself
+-->
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Armstrong Number Checker</title>
+    <link rel="stylesheet" href="all_at_once.css" />
+  </head>
+  <body>
+    <h2>Armstrong Number Checker</h2>
+
+    <script>
+      let number = prompt("Enter a number to check if it's Armstrong:");
+
+      // jovo 
+      function isArmstrongNumber(number) {
+        const numStr = number.toString();
+        const numOfDigits = numStr.length;
+
+        let sum = 0;
+
+        for (let i = 0; i < numDigits; i++) {
+          const digit = parseInt(numStr[i]);
+
+          sum += Math.pow(digit, numDigits);
+        }
+
+        return sum === number;
+      }
+
+      // aama bs khali darek steps aalag aalag joi saki aatla maate biju function banavyu chhe
+      function isArmstrong(num) {
+        let digits = num.split("");
+        let numberOfDigits = digits.length;
+
+        let sum = 0;
+        let calculations = [];
+
+        // aa jovo "of" in for loop , 
+        for (let digit of digits) {
+          let power = Math.pow(parseInt(digit), numberOfDigits);
+          sum += power;
+          calculations.push(`${digit}^${numberOfDigits} = ${power}`);
+        }
+
+        return {
+          isArmstrong: sum === parseInt(num),
+          sum: sum,
+          steps: calculations,
+        };
+      }
+
+      let result = isArmstrong(number);
+
+      // aa moh-maya chhe
+      document.write("<div class='output'>");
+      document.write("<p><b>Number entered:</b> " + number + "</p>");
+      document.write("<p><b>Number of digits:</b> " + number.length + "</p>");
+      document.write("<p><b>Calculations:</b></p>");
+      result.steps.forEach((step) => {
+        document.write("<p>" + step + "</p>");
+      });
+      document.write("<p><b>Sum:</b> " + result.sum + "</p>");
+      document.write(
+        "<p><b>Result:</b> " +
+          number +
+          " is " +
+          (result.isArmstrong
+            ? "an Armstrong number"
+            : "not an Armstrong number") +
+          "</p>"
+      );
+      document.write("</div>");
+    </script>
+  </body>
+</html>

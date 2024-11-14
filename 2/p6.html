@@ -1,0 +1,44 @@
+<!-- 
+WAP to print sum of first 'n' Natural number
+
+(1 + 2 + 3 + ... + n)
+-->
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Sum of Natural Numbers</title>
+    <link rel="stylesheet" href="all_at_once.css" />
+  </head>
+  <body>
+    <h2>Sum of Natural Numbers</h2>
+
+    <script>
+      let n = parseInt(
+        prompt("Enter a number :")
+      );
+
+      function calculateSum(num) {
+
+        // aapne varso pela aavu kaik kari gya ...ane clg ma pan e j karave chhe aapni pase 
+        // sum = n(n+1)/2
+
+        return (num * (num + 1)) / 2;
+      }
+
+      const sum = calculateSum(n);
+
+
+      // sathe sathe ek one liner bonus [ agar apko iss stetion pe utar na he toh ticket lena padega ]
+      let series = Array.from({ length: n }, (_, i) => i + 1).join(" + ");
+
+      // aa moh-maya chhe
+      document.write("<div class='output'>");
+      document.write("<p><b>Number entered (n):</b> " + n + "</p>");
+      document.write("<p><b>Series:</b> " + series + "</p>");
+      document.write("<p><b>Sum:</b> " + sum + "</p>");
+      document.write("</div>");
+
+    </script>
+  </body>
+</html>

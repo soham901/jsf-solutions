@@ -15,14 +15,14 @@ WAP to print the Fibonacci series of a number
 
     <script>
       // Get input from user
-      let terms = parseInt(
+      const terms = parseInt(
         prompt("Enter number of terms for Fibonacci series:")
       );
 
       function generateFibonacci(n) {
         // pela building banava payo toh joi ne ...toh paya na 2 num 0, 1
         let series = [0, 1];
-        // let steps = [];
+        let steps = [];
 
         // have jovo building mate
         for (let i = 2; i < n; i++) {
@@ -36,27 +36,28 @@ WAP to print the Fibonacci series of a number
           // Add to series
           series.push(nextNumber);
 
-          // steps.push(`${secondLastNumber} + ${lastNumber} = ${nextNumber}`);
+          steps.push(`${secondLastNumber} + ${lastNumber} = ${nextNumber}`);
         }
 
-        // return {
-        //     series: series.slice(0, n),
-        //     steps: steps
-        // };
-        return series;
+        return {
+          series: series.slice(0, n),
+          steps: steps,
+        };
+        // return series;
       }
 
       const result = generateFibonacci(terms);
 
+      // aa moh-maya chhe
       document.write("<div class='output'>");
       document.write("<p><b>Number of terms:</b> " + terms + "</p>");
       document.write(
-        "<p><b>Fibonacci Series:</b> " + result.join(", ") + "</p>"
+        "<p><b>Fibonacci Series:</b> " + result.series.join(", ") + "</p>"
       );
       document.write("<p><b>Steps:</b></p>");
-      // result.steps.forEach(step => {
-      //     document.write("<p>" + step + "</p>");
-      // });
+      result.steps.forEach((step) => {
+        document.write("<p>" + step + "</p>");
+      });
       document.write("</div>");
     </script>
   </body>

@@ -1,0 +1,108 @@
+<!-- 
+WAP to prepare student registration form and validate it using JavaScript
+-->
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Student Registration</title>
+    <link rel="stylesheet" href="p1.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <h2>Student Registration Form</h2>
+
+    <div class="form-container">
+      <form onsubmit="return validateForm()">
+        <div class="form-group">
+          <label>Full Name:</label>
+          <input type="text" name="name" />
+        </div>
+
+        <div class="form-group">
+          <label>Email:</label>
+          <input type="text" name="email" />
+        </div>
+
+        <div class="form-group">
+          <label>Phone Number:</label>
+          <input type="text" name="phone" />
+        </div>
+
+        <div class="form-group">
+          <label>Age:</label>
+          <input type="number" name="age" />
+        </div>
+
+        <button type="submit">Register</button>
+      </form>
+    </div>
+
+    <script>
+      function validateForm() {
+        const form = document.forms[0];
+        const name = form.name.value;
+        const email = form.email.value;
+        const phone = form.phone.value;
+        const age = form.age.value;
+
+        // Validate name (check if empty or contains numbers)
+        if (name === "") {
+          alert("Please enter your name");
+          return false;
+        }
+
+        // Simple check for numbers in name
+        for (let i = 0; i < name.length; i++) {
+          if ("0123456789".includes(name[i])) {
+            alert("Name should not contain numbers");
+            return false;
+          }
+        }
+
+        // Validate email (simple check for @ and .)
+        if (email === "") {
+          alert("Please enter your email");
+          return false;
+        }
+        if (!email.includes("@") || !email.includes(".")) {
+          alert("Please enter a valid email address");
+          return false;
+        }
+
+        // Validate phone (check length and numbers only)
+        if (phone === "") {
+          alert("Please enter your phone number");
+          return false;
+        }
+        if (phone.length !== 10) {
+          alert("Phone number should be 10 digits");
+          return false;
+        }
+        for (let i = 0; i < phone.length; i++) {
+          if (!"0123456789".includes(phone[i])) {
+            alert("Phone number should only contain digits");
+            return false;
+          }
+        }
+
+        // Validate age
+        if (age === "") {
+          alert("Please enter your age");
+          return false;
+        }
+        if (age < 15 || age > 30) {
+          alert("Age should be between 15 and 30");
+          return false;
+        }
+
+        // If all validations pass
+        alert("Registration successful!");
+        return false; // Prevent form submission for this example
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,93 @@
+<!-- 
+WAP to sort array in ascending order without using inbuilt function
+-->
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Manual Array Sorting</title>
+    <link rel="stylesheet" href="Sub_ki_CSS.css" />
+  </head>
+  <body>
+    <h2>Manual Array Sorting</h2>
+
+    <script>
+      // vahi kahani firse , pela user ne puchho ketla number aapva mango chho , pachhi tene ek ek kari array ma store karo
+      const size = parseInt(prompt("How many numbers do you want to sort?"));
+
+      let numbers = [];
+      for (let i = 0; i < size; i++) {
+        let num = parseInt(prompt("Enter number #" + (i + 1) + ":"));
+        numbers.push(num);
+      }
+
+      //aa khali print karyu chhe k sort karya pela array kevo hato
+      document.write("<div class='output'>");
+      document.write(
+        "<p><b>Original array:</b> " + numbers.join(", ") + "</p>"
+      );
+
+      //   // Bubble sort algorithm
+
+      //   // Outer loop for passes
+      //   for (let i = 0; i < numbers.length - 1; i++) {
+      //     // Inner loop for comparisons
+      //     for (let j = 0; j < numbers.length - 1 - i; j++) {
+      //       // If current number is greater than next number, swap them
+      //       if (numbers[j] > numbers[j + 1]) {
+      //         // Swap using temporary variable
+      //         let temp = numbers[j];
+      //         numbers[j] = numbers[j + 1];
+      //         numbers[j + 1] = temp;
+      //       }
+
+      //       // Show each step of sorting
+      //       document.write(
+      //         "<p>Pass " +
+      //           (i + 1) +
+      //           ", Step " +
+      //           (j + 1) +
+      //           ": " +
+      //           numbers.join(", ") +
+      //           "</p>"
+      //       );
+      //     }
+      //   }
+
+      // Selection sort algorithm
+
+      // Outer loop for each position to be filled
+      for (let i = 0; i < numbers.length - 1; i++) {
+        // Assume current position has minimum value
+        let minIndex = i;
+
+        // Find minimum element in remaining unsorted array
+        for (let j = i + 1; j < numbers.length; j++) {
+          if (numbers[j] < numbers[minIndex]) {
+            minIndex = j;
+          }
+        }
+
+        // If we found a new minimum, swap it with current position
+        if (minIndex !== i) {
+          let temp = numbers[i];
+          numbers[i] = numbers[minIndex];
+          numbers[minIndex] = temp;
+        }
+
+        // Show the array after each pass
+        document.write("<p><b>Pass " + (i + 1) + ":</b></p>");
+        document.write("<p>Found minimum: " + numbers[i] + "</p>");
+        document.write("<p>Array now: " + numbers.join(", ") + "</p>");
+        document.write(
+          "<p style='color: #666;'>(" +
+            (numbers.length - i - 1) +
+            " positions left to sort)</p>"
+        );
+      }
+
+      document.write("<p><b>Sorted array:</b> " + numbers.join(", ") + "</p>");
+      document.write("</div>");
+    </script>
+  </body>
+</html>

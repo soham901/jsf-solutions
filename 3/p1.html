@@ -1,0 +1,37 @@
+<!-- 
+WAP to create an array of countries, read values from user and print it
+-->
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Countries Array</title>
+    <link rel="stylesheet" href="Sub_ki_CSS.css" />
+  </head>
+  <body>
+    <h2>Countries Array</h2>
+
+    <script>
+      // ketli contry na naam tamne aavde chhe e toh puchhvu pade ne
+      const size = parseInt(prompt("How many countries do you want to enter?"));
+
+      // jetli pan contry hoy , badhi contry ne control karsu aa array ni andar
+      let countries = [];
+
+      // aava dyo jetli pan contry hoy , aaj tumhara bhai sabhi contry print kardega
+      for (let i = 0; i < size; i++) {
+        let country = prompt("Enter country #" + (i + 1) + ":");
+        countries.push(country);
+      }
+
+      // aa toh ...
+      document.write("<div class='output'>");
+      document.write("<p><b>Number of countries:</b> " + size + "</p>");
+      document.write("<p><b>Countries entered:</b></p>");
+      for (let i = 0; i < countries.length; i++) {
+        document.write("<p>" + (i + 1) + ". " + countries[i] + "</p>");
+      }
+      document.write("</div>");
+    </script>
+  </body>
+</html>

@@ -1,0 +1,65 @@
+<!-- 
+WAP to print LCM of two numbers
+
+    the smallest number that is divisible by both numbers
+-->
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>LCM Calculator</title>
+    <link rel="stylesheet" href="all_at_once.css" />
+  </head>
+  <body>
+    <h2>Least Common Multiple (LCM) Calculator</h2>
+
+    <script>
+      let num1 = parseInt(prompt("Enter first number:"));
+      let num2 = parseInt(prompt("Enter second number:"));
+
+      function findLCM(a, b) {
+        // pela toh bey mathi jovanu kayo number moto chhe
+        let larger = Math.max(a, b);
+        let smaller = Math.min(a, b);
+
+        let i = 1;
+        // have aapne mota num ne check karavi k te nana num sathe divisible chhe k nai?
+        // joh ha toh e j toh chhe aapno LCM , nakar pachhi..
+        // ane tevi rite mota num ma badha multiple sathe pan check karavanu 
+        while (true) {
+          let multiple = larger * i;
+          if (multiple % smaller === 0) {
+            return multiple;
+          }
+          i++;
+        }
+      }
+
+      //biji rite am thay k ..
+
+      //pela GCD find karvano bey num no
+      // function findGCD(a, b) {
+      //   while (b !== 0) {
+      //     let temp = b;
+      //     b = a % b;
+      //     a = temp;
+      //   }
+      //   return a;
+      // }
+
+      // have 
+      // function findLCM(a, b) {
+      //   // LCM = (a * b) / GCD(a, b)
+      //   return (a * b) / findGCD(a, b);
+      // }
+
+      const lcm = findLCM(num1, num2);
+
+      // aa moh-maya chhe
+      document.write("<div class='output'>");
+      document.write("<p><b>First number:</b> " + num1 + "</p>");
+      document.write("<p><b>Second number:</b> " + num2 + "</p>");
+      document.write("<p><b>LCM:</b> " + lcm + "</p>");
+      document.write("</div>");
+    </script>
+  </body>
+</html>
