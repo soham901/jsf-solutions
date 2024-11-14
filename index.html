@@ -11,11 +11,11 @@
       <div class="flex flex-col sm:flex-row justify-between items-center mb-8">
         <header class="mb-10">
           <h1
-            class="text-4xl font-extrabold text-gray-900 sm:text-5xl sm:tracking-tight lg:text-6xl"
+            class="text-4xl font-extrabold text-gray-900 sm:text-2xl sm:tracking-tight lg:text-4xl"
           >
-            JSF Practicals
+            JSF Practicals <span id="count"></span>
           </h1>
-          <p class="mt-2 text-xl text-gray-500">
+          <p class="mt-2 text-sm sm:text-xl text-gray-500">
             Explore and learn from our practical examples
           </p>
         </header>
@@ -56,6 +56,7 @@
         .then((response) => response.json())
         .then((data) => {
           const container = document.getElementById("practicals-container");
+          const counter = document.getElementById("count");
           const sortAscBtn = document.getElementById("sort-asc");
           const sortDescBtn = document.getElementById("sort-desc");
           const searchInput = document.getElementById("search");
@@ -80,6 +81,8 @@
           };
 
           const displayPracticals = (practicals) => {
+            counter.textContent = `(${practicals.length})`;
+
             container.innerHTML = "";
 
             practicals.forEach((practical) => {
@@ -112,7 +115,7 @@
           sortAscBtn.addEventListener("click", () => sortData("asc"));
           sortDescBtn.addEventListener("click", () => sortData("desc"));
 
-          displayPracticals(data);
+          sortData("desc");
         });
     </script>
   </body>
