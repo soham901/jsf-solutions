@@ -4,95 +4,102 @@ WAP using HTML, CSS, JavaScript to design simple calculator with GUI
 
 <!DOCTYPE html>
 <html>
-<head>
+  <head>
     <title>Simple Calculator</title>
-    <link rel="stylesheet" href="p2.css">
-</head>
-<body>
+    <link rel="stylesheet" href="p2.css" />
+  </head>
+  <body>
     <h2>Simple Calculator</h2>
 
     <div class="calculator">
-        <input type="text" class="display" id="display" readonly>
-        <div class="buttons">
-            <button onclick="clearDisplay()">C</button>
-            <button onclick="appendNumber('7')">7</button>
-            <button onclick="appendNumber('8')">8</button>
-            <button onclick="appendNumber('9')">9</button>
-            <button onclick="setOperator('+')" class="operator">+</button>
-            <button onclick="appendNumber('4')">4</button>
-            <button onclick="appendNumber('5')">5</button>
-            <button onclick="appendNumber('6')">6</button>
-            <button onclick="setOperator('-')" class="operator">-</button>
-            <button onclick="appendNumber('1')">1</button>
-            <button onclick="appendNumber('2')">2</button>
-            <button onclick="appendNumber('3')">3</button>
-            <button onclick="setOperator('*')" class="operator">×</button>
-            <button onclick="appendNumber('0')">0</button>
-            <button onclick="appendNumber('.')">.</button>
-            <button onclick="calculate()" class="equals">=</button>
-            <button onclick="setOperator('/')" class="operator">÷</button>
-        </div>
+      <input type="text" class="display" id="display" readonly />
+      <div class="buttons">
+        <button onclick="clearDisplay()">C</button>
+        <button onclick="appendNumber('7')">7</button>
+        <button onclick="appendNumber('8')">8</button>
+        <button onclick="appendNumber('9')">9</button>
+        <button onclick="setOperator('+')" class="operator">+</button>
+        <button onclick="appendNumber('4')">4</button>
+        <button onclick="appendNumber('5')">5</button>
+        <button onclick="appendNumber('6')">6</button>
+        <button onclick="setOperator('-')" class="operator">-</button>
+        <button onclick="appendNumber('1')">1</button>
+        <button onclick="appendNumber('2')">2</button>
+        <button onclick="appendNumber('3')">3</button>
+        <button onclick="setOperator('*')" class="operator">×</button>
+        <button onclick="appendNumber('0')">0</button>
+        <button onclick="appendNumber('.')">.</button>
+        <button onclick="calculate()" class="equals">=</button>
+        <button onclick="setOperator('/')" class="operator">÷</button>
+      </div>
     </div>
 
     <script>
-        let firstNumber = '';
-        let operator = '';
-        let newNumber = true;
-        
-        function appendNumber(num) {
-            let display = document.getElementById('display');
-            if (newNumber) {
-                display.value = num;
-                newNumber = false;
-            } else {
-                display.value += num;
-            }
-        }
-        
-        function setOperator(op) {
-            firstNumber = document.getElementById('display').value;
-            operator = op;
-            newNumber = true;
-        }
-        
-        function calculate() {
-            let secondNumber = document.getElementById('display').value;
-            let result = 0;
-            
-            let num1 = parseFloat(firstNumber);
-            let num2 = parseFloat(secondNumber);
-            
-            
-            switch(operator) {
-                case '+':
-                    result = num1 + num2;
-                    break;
-                case '-':
-                    result = num1 - num2;
-                    break;
-                case '*':
-                    result = num1 * num2;
-                    break;
-                case '/':
-                    if (num2 === 0) {
-                        alert("Cannot divide by zero!");
-                        return;
-                    }
-                    result = num1 / num2;
-                    break;
-            }
-            
+      let firstNumber = "";
+      let operator = "";
+      let newNumber = true;
 
-            document.getElementById('display').value = result;
-            newNumber = true;
+      function appendNumber(num) {
+        let display = document.getElementById("display");
+        if (newNumber) {
+          display.value = num;
+          newNumber = false;
+        } else {
+          display.value += num;
         }
-        
-        function clearDisplay() {
-            document.getElementById('display').value = '';
-            firstNumber = '';
-            operator = '';
-            newNumber = true;
+      }
+
+      function setOperator(op) {
+        firstNumber = document.getElementById("display").value;
+        operator = op;
+        display.value += " " + op + " ";
+
+        // newNumber = true;
+      }
+
+      function calculate() {
+        let secondNumber = document.getElementById("display").value;
+
+        secondNumber = secondNumber.slice(
+          secondNumber.indexOf(operator) + 1,
+          secondNumber.length
+        );
+
+        console.log(secondNumber);
+        let result = 0;
+
+        let num1 = parseFloat(firstNumber);
+        let num2 = parseFloat(secondNumber);
+
+        switch (operator) {
+          case "+":
+            result = num1 + num2;
+            break;
+          case "-":
+            result = num1 - num2;
+            break;
+          case "*":
+            result = num1 * num2;
+            break;
+          case "/":
+            if (num2 === 0) {
+              alert("Cannot divide by zero!");
+              return;
+            }
+            result = num1 / num2;
+            break;
         }
+
+        document.getElementById("display").value += " = " + result;
+        newNumber = true;
+      }
+
+      function clearDisplay() {
+        document.getElementById("display").value = "";
+        firstNumber = "";
+        operator = "";
+        newNumber = true;
+      }
     </script>
-</body>
+  </body>
 </html>
