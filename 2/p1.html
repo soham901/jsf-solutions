@@ -24,7 +24,7 @@ WAP to check whether the given no. is prime or not
 
         // pachhi number loop ma check karavtu javanu k number 2 thi lai num-1 sudhi ma koi sathe bhagay chhe ??
         // joh ha toh e prime no hoy sake
-        for (let i = 2; i < num; i++) {
+        for (let i = 3; i < num; i++) {
           if (num % i == 0) {
             return false;
           }
@@ -37,14 +37,14 @@ WAP to check whether the given no. is prime or not
       const result = isPrime(number);
 
       //pela aa if else jovo
-      if (result == true) {
-        const message = "a prime number";
-      } else {
-        message = "not a prime number";
-      }
+      // if (result === true) {
+      //   const message = "a prime number";
+      // } else {
+      //   message = "not a prime number";
+      // }
 
       //have aa one liner [be a vishal dayama]
-      // const message = result ? "a prime number" : "not a prime number";
+      const message = result ? "a prime number" : "not a prime number";
 
       // aa moh-maya chhe 
       document.write("<div class='output'>");
