@@ -1,17 +1,24 @@
-<!-- 
-WAP to print the Fibonacci series of a number
-    
-    Explanation: Fibonacci series is where each number is the sum of the previous two numbers
--->
+<!-- WAP to print the Fibonacci series of a number Explanation: Fibonacci series is where each number is the sum of the previous two numbers -->
 
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Fibonacci Series</title>
     <link rel="stylesheet" href="all_at_once.css" />
   </head>
   <body>
     <h2>Fibonacci Series Generator</h2>
+
+    <div class="output">
+      <p><strong>Number of terms:</strong> <span id="numTerms"></span></p>
+      <p>
+        <strong>Fibonacci Series:</strong> <span id="fibonacciSeries"></span>
+      </p>
+      <p><strong>Calculation Steps:</strong></p>
+      <ul id="calculationSteps"></ul>
+    </div>
 
     <script>
       // Get input from user
@@ -19,23 +26,19 @@ WAP to print the Fibonacci series of a number
         prompt("Enter number of terms for Fibonacci series:")
       );
 
+      // Generate Fibonacci sequence with calculation steps
       function generateFibonacci(n) {
-        // pela building banava payo toh joi ne ...toh paya na 2 num 0, 1
+        if (n <= 0) return { series: [], steps: [] };
+
         let series = [0, 1];
         let steps = [];
 
-        // have jovo building mate
         for (let i = 2; i < n; i++) {
-          // chhela be num levana
           let lastNumber = series[i - 1];
           let secondLastNumber = series[i - 2];
-
-          // have e bey ne umeri dyo aatle pachhi no number aavi gayo
           let nextNumber = lastNumber + secondLastNumber;
 
-          // Add to series
           series.push(nextNumber);
-
           steps.push(`${secondLastNumber} + ${lastNumber} = ${nextNumber}`);
         }
 
@@ -43,22 +46,22 @@ WAP to print the Fibonacci series of a number
           series: series.slice(0, n),
           steps: steps,
         };
-        // return series;
       }
 
       const result = generateFibonacci(terms);
 
-      // aa moh-maya chhe
-      document.write("<div class='output'>");
-      document.write("<p><b>Number of terms:</b> " + terms + "</p>");
-      document.write(
-        "<p><b>Fibonacci Series:</b> " + result.series.join(", ") + "</p>"
-      );
-      document.write("<p><b>Steps:</b></p>");
+      // Update HTML with the results
+      document.getElementById("numTerms").textContent = terms;
+      document.getElementById("fibonacciSeries").textContent =
+        result.series.join(", ");
+
+      // Populate steps as list items
+      const stepsContainer = document.getElementById("calculationSteps");
       result.steps.forEach((step) => {
-        document.write("<p>" + step + "</p>");
+        const listItem = document.createElement("li");
+        listItem.textContent = step;
+        stepsContainer.appendChild(listItem);
       });
-      document.write("</div>");
     </script>
   </body>
 </html>

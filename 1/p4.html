@@ -1,106 +1,56 @@
-<!-- 
-WAP to explore inbuilt string functions slice(), toLowerCase(), toUpperCase(), valueOf(), fromCharCode()
--->
+<!-- WAP to explore inbuilt string functions slice(), toLowerCase(), toUpperCase(), valueOf(), fromCharCode() -->
+
 <!DOCTYPE html>
 <html>
   <head>
     <title>More String Functions</title>
-    <style>
-      .output {
-        margin: 10px 0;
-        padding: 5px;
-        border-bottom: 1px solid #ccc;
-      }
-    </style>
   </head>
   <body>
     <h2>Additional String Functions</h2>
 
     <script>
-      let text = prompt(
+      const text = prompt(
         "Enter a text to manipulate:",
         "Hello JavaScript World"
       );
-      document.write(
-        "<div class='output'><b>Original string:</b> " + text + "</div>"
-      );
-
-
 
       // slice()
-      let start = prompt("Enter start position for slice:", "6");
-      let end = prompt("Enter end position for slice:", "16");
+      const start = prompt("Enter start position for slice:", "6");
+      const end = prompt("Enter end position for slice:", "16");
       document.write(
-        "<div class='output'><b>slice(" +
-          start +
-          ", " +
-          end +
-          "):</b> " +
-          text.slice(start, end) +
-          "</div>"
+        `<p>slice(${start}, ${end}): ${text.slice(start, end)} <br>`
       );
-      document.write(
-        "<div class='output'><b>slice(-5):</b> " +
-          text.slice(-5) +
-          " (last 5 characters)</div>"
-      );
-
-
-
+      document.write(`slice(-5): ${text.slice(-5)} (last 5 characters) </p>`);
 
       // toLowerCase() and toUpperCase()
-      document.write(
-        "<div class='output'><b>toLowerCase():</b> " +
-          text.toLowerCase() +
-          "</div>"
-      );
-      document.write(
-        "<div class='output'><b>toUpperCase():</b> " +
-          text.toUpperCase() +
-          "</div>"
-      );
-
-
-
+      document.write(`<p>toLowerCase(): ${text.toLowerCase()} <br>`);
+      document.write(`toUpperCase(): ${text.toUpperCase()} </p>`);
 
       // valueOf()
-      let stringObject = new String(
+      const stringObject = new String(
         prompt("Enter text for valueOf():", "Hello")
       );
-      document.write(
-        "<div class='output'><b>valueOf():</b> " +
-          stringObject.valueOf() +
-          "</div>"
-      );
-
-
-
+      document.write(`<p>valueOf(): ${stringObject.valueOf()} </p>`);
 
       // fromCharCode()
       document.write(
-        "<div class='output'><b>String.fromCharCode(72, 69, 76, 76, 79):</b> " +
-          String.fromCharCode(72, 69, 76, 76, 79) +
-          " (spells HELLO)</div>"
+        `<p>String.fromCharCode(72, 69, 76, 76, 79): ${String.fromCharCode(
+          72,
+          69,
+          76,
+          76,
+          79
+        )} (spells HELLO) </p>`
       );
 
-
-      
-
-      // Combined example
-      let mixedText = prompt(
+      // Combined example: trim and toLowerCase
+      const mixedText = prompt(
         "Enter mixed case text with spaces:",
         "   MiXeD CaSe TeXt   "
       );
+      const processed = mixedText.trim().toLowerCase();
       document.write(
-        "<div class='output'><b>Original mixed text:</b> '" +
-          mixedText +
-          "'</div>"
-      );
-      let processed = mixedText.trim().toLowerCase();
-      document.write(
-        "<div class='output'><b>After trim() and toLowerCase():</b> '" +
-          processed +
-          "'</div>"
+        `<p>Original: '${mixedText}' <br>After trim() and toLowerCase(): '${processed}' </p>`
       );
     </script>
   </body>

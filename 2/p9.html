@@ -1,51 +1,50 @@
 <!-- 
-WAP to print the GCD of two number
-
-     Greatest Common Divisor (GCD) is the largest number that divides both numbers
+  WAP to print the GCD of two number Greatest Common Divisor (GCD) is the largest number that divides both numbers
 -->
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>GCD Calculator</title>
     <link rel="stylesheet" href="all_at_once.css" />
   </head>
   <body>
     <h2>Greatest Common Divisor (GCD) Calculator</h2>
 
+    <!-- Input values and result will be displayed here -->
+    <div class="output">
+      <p><strong>First number:</strong> <span id="firstNumber"></span></p>
+      <p><strong>Second number:</strong> <span id="secondNumber"></span></p>
+      <p><strong>GCD:</strong> <span id="gcdResult"></span></p>
+    </div>
+
     <script>
-      let num1 = parseInt(prompt("Enter first number:"));
-      let num2 = parseInt(prompt("Enter second number:"));
+      // Prompt user for input numbers
+      const firstNumber = parseInt(prompt("Enter the first number:"));
+      const secondNumber = parseInt(prompt("Enter the second number:"));
 
-      // aavo bacho tumhe sikhaye gcd kese find karte he
-      function gcd(a, b) {
-        const smaller = Math.min(a, b);
-
-        // nana number thi lai ne 1 sudhi check karvanu k bey number thi divisible chhe k nai
-        for (let i = smaller; i >= 1; i--) {
-          if (a % i === 0 && b % i === 0) {
-            return i;
-          }
-        }
-      }
-
-      // aa chhe Euclid's algorithm , basically nana num ne mota number sathe divide karta je ses made tene nana number sathe replace kartu javanu and mota num ne pela je nano num hato te aapi devano , aavi rite jya sudhi nano num 'zero' no thay tya sudhi karvanu
-      function findGCD(a, b) {
+      // Helper function to calculate GCD using Euclid's algorithm
+      function calculateGCD(a, b) {
         while (b !== 0) {
-          let temp = b;
-          b = a % b;
-          a = temp;
+          const remainder = a % b;
+          a = b;
+          b = remainder;
         }
         return a;
       }
 
-      let gcd = findGCD(num1, num2);
+      const gcdResult = calculateGCD(firstNumber, secondNumber);
 
-      // aa moh-maya chhe
-      document.write("<div class='output'>");
-      document.write("<p><b>First number:</b> " + num1 + "</p>");
-      document.write("<p><b>Second number:</b> " + num2 + "</p>");
-      document.write("<p><b>GCD:</b> " + gcd + "</p>");
-      document.write("</div>");
+      // Update HTML content with results
+      document.getElementById("firstNumber").textContent = firstNumber;
+      document.getElementById("secondNumber").textContent = secondNumber;
+      document.getElementById("gcdResult").textContent = gcdResult;
+
+      // examples
+      // 12, 15 => 3
+      // 8, 12 => 4
+      // 54, 24 => 6
     </script>
   </body>
 </html>

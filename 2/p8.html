@@ -1,37 +1,46 @@
-<!-- 
-WAP to print the factors of given number
--->
+<!-- WAP to print the factors of given number -->
 
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
-    <title>Number Factors</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Number Factors Calculator</title>
     <link rel="stylesheet" href="all_at_once.css" />
   </head>
   <body>
     <h2>Number Factors Calculator</h2>
 
+    <div class="output">
+      <p><b>Number entered:</b> <span id="number"></span></p>
+      <p><b>Factors:</b> <span id="factors"></span></p>
+      <p><b>Count:</b> <span id="factorCount"></span></p>
+    </div>
+
     <script>
       let number = parseInt(prompt("Enter a number to find its factors:"));
 
-      function findFactors(num) {
-        let factors = [];
-        for (let i = 1; i <= num; i++) {
-          if (num % i === 0) factors.push(i); // factors naam na array ma joh teno factor hase toh add kari dese
+      // Validate the input to make sure it's a positive integer
+      if (isNaN(number) || number <= 0) {
+        alert("Please enter a valid positive number.");
+      } else {
+        // Function to find factors of a number
+        function findFactors(num) {
+          let factors = [];
+          for (let i = 1; i <= num; i++) {
+            if (num % i === 0) factors.push(i);
+          }
+          return factors;
         }
-        return factors;
+
+        let factors = findFactors(number);
+
+        // Update the HTML with the results
+        document.getElementById("number").textContent = number;
+        document.getElementById("factors").textContent = factors.join(", ");
+        document.getElementById("factorCount").textContent =
+          factors.length + " factors found";
       }
-
-      let factors = findFactors(number);
-
-      // aa moh-maya chhe
-      document.write("<div class='output'>");
-      document.write("<p><b>Number entered:</b> " + number + "</p>");
-      document.write("<p><b>Factors:</b> " + factors.join(", ") + "</p>");
-      document.write(
-        "<p><b>Count:</b> " + factors.length + " factors found</p>"
-      );
-      document.write("</div>");
     </script>
   </body>
 </html>

@@ -1,56 +1,60 @@
-<!-- 
-WAP to find the factorial of given number
-
-    Factorial of n (n!) is the product of all positive integers less than or equal to n
--->
+<!-- WAP to find the factorial of given number Factorial of n (n!) is the product of all positive integers less than or equal to n -->
 
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Factorial Calculator</title>
     <link rel="stylesheet" href="all_at_once.css" />
   </head>
   <body>
     <h2>Factorial Calculator</h2>
 
+    <!-- Display area for number, calculation steps, and result -->
+    <div class="output">
+      <p><strong>Number entered:</strong> <span id="enteredNumber"></span></p>
+      <p>
+        <strong>Calculation steps:</strong> <span id="calculationSteps"></span>
+      </p>
+      <p>
+        <strong>Factorial result:</strong> <span id="factorialResult"></span>
+      </p>
+    </div>
+
     <script>
-      // Get input from user
-      let number = parseInt(
+      // Prompt user to enter a number
+      const number = parseInt(
         prompt("Enter a number to calculate its factorial:")
       );
 
+      // Factorial calculation function
       function factorial(num) {
-        // ela pela joh toh khara number negative ma factorial hoy kyay
         if (num < 0) {
-          return "Factorial is not defined for negative numbers";
+          return {
+            result: "undefined",
+            steps: "Factorial is not defined for negative numbers",
+          };
         }
 
-        // dharo k result naam na variable ma 1 chhe [dharvanu nathi chhe j bhaila]
         let result = 1;
-        let calculation = "";
+        let steps = "";
 
-        // vicharo factorial ma hoy shu...kai nai 1 thi num sudhi multiply karta javanu aatle bani gyu factorial
         for (let i = 1; i <= num; i++) {
-          result = result * i;
-          // aana upper dhyan dyo ma aa moh-maya chhe
-          // calculation += i + (i === num ? " = " : " × ");
+          result *= i;
+          steps += i + (i === num ? " = " : " × ");
         }
 
-        // return {
-        //     result: result,
-        //     steps: calculation + result
-        // };
-        return result;
+        return { result, steps: steps + result };
       }
 
-      const answer = factorial(number);
+      // Calculate factorial and retrieve both result and steps
+      const { result, steps } = factorial(number);
 
-      // aa moh-maya chhe
-      document.write("<div class='output'>");
-      document.write("<p><b>Number entered:</b> " + number + "</p>");
-      document.write("<p><b>Step by step:</b> " + answer + "</p>");
-      // document.write("<p><b>Factorial:</b> " + number + "! = " + answer.result + "</p>");
-      document.write("</div>");
+      // Update HTML content with entered number, calculation steps, and factorial result
+      document.getElementById("enteredNumber").textContent = number;
+      document.getElementById("calculationSteps").textContent = steps;
+      document.getElementById("factorialResult").textContent = result;
     </script>
   </body>
 </html>

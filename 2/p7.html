@@ -1,49 +1,42 @@
-<!-- 
-WAP to check whether the given number is Armstrong or not
+<!-- WAP to check whether the given number is Armstrong or not An Armstrong number is one where sum of each digit raised to the power of total digits equals the number itself -->
 
-    An Armstrong number is one where sum of each digit raised to the power of total digits equals the number itself
--->
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Armstrong Number Checker</title>
     <link rel="stylesheet" href="all_at_once.css" />
   </head>
   <body>
     <h2>Armstrong Number Checker</h2>
 
+    <div class="output">
+      <p><b>Number entered:</b> <span id="number"></span></p>
+      <p><b>Number of digits:</b> <span id="numOfDigits"></span></p>
+      <p><b>Calculations:</b></p>
+      <div id="calculations"></div>
+      <p><b>Sum:</b> <span id="sum"></span></p>
+      <p><b>Result:</b> <span id="result"></span></p>
+    </div>
+
     <script>
       let number = prompt("Enter a number to check if it's Armstrong:");
 
-      // jovo 
-      function isArmstrongNumber(number) {
-        const numStr = number.toString();
-        const numOfDigits = numStr.length;
-
-        let sum = 0;
-
-        for (let i = 0; i < numDigits; i++) {
-          const digit = parseInt(numStr[i]);
-
-          sum += Math.pow(digit, numDigits);
-        }
-
-        return sum === number;
-      }
-
-      // aama bs khali darek steps aalag aalag joi saki aatla maate biju function banavyu chhe
+      // Function to check if the number is an Armstrong number
       function isArmstrong(num) {
-        let digits = num.split("");
-        let numberOfDigits = digits.length;
+        const numStr = num.toString();
+        const numOfDigits = numStr.length;
 
         let sum = 0;
         let calculations = [];
 
-        // aa jovo "of" in for loop , 
-        for (let digit of digits) {
-          let power = Math.pow(parseInt(digit), numberOfDigits);
+        // Calculate the sum of each digit raised to the power of the number of digits
+        for (let i = 0; i < numOfDigits; i++) {
+          const digit = parseInt(numStr[i]);
+          const power = Math.pow(digit, numOfDigits);
           sum += power;
-          calculations.push(`${digit}^${numberOfDigits} = ${power}`);
+          calculations.push(`${digit}^${numOfDigits} = ${power}`);
         }
 
         return {
@@ -55,25 +48,24 @@ WAP to check whether the given number is Armstrong or not
 
       let result = isArmstrong(number);
 
-      // aa moh-maya chhe
-      document.write("<div class='output'>");
-      document.write("<p><b>Number entered:</b> " + number + "</p>");
-      document.write("<p><b>Number of digits:</b> " + number.length + "</p>");
-      document.write("<p><b>Calculations:</b></p>");
+      // Update the HTML with the results
+      document.getElementById("number").textContent = number;
+      document.getElementById("numOfDigits").textContent = number.length;
+      document.getElementById("sum").textContent = result.sum;
+      document.getElementById("result").textContent = result.isArmstrong
+        ? "an Armstrong number"
+        : "not an Armstrong number";
+
+      // Display the calculation steps
+      const calculationsDiv = document.getElementById("calculations");
       result.steps.forEach((step) => {
-        document.write("<p>" + step + "</p>");
+        const p = document.createElement("p");
+        p.textContent = step;
+        calculationsDiv.appendChild(p);
       });
-      document.write("<p><b>Sum:</b> " + result.sum + "</p>");
-      document.write(
-        "<p><b>Result:</b> " +
-          number +
-          " is " +
-          (result.isArmstrong
-            ? "an Armstrong number"
-            : "not an Armstrong number") +
-          "</p>"
-      );
-      document.write("</div>");
+
+      // examples
+      // 153 = 1^3 + 5^3 + 3^3 = 1 + 125 + 27 = 153
     </script>
   </body>
 </html>

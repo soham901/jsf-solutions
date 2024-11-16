@@ -1,155 +1,62 @@
-<!-- 
-WAP to demonstrate the use of various inbuilt string functions like charAt(),
-charCodeAt(), startsWith(), endsWith(), includes(), indexOf(), lastIndexOf(),
-match(), repeat(), replace("", ""), search(), split(), substr(start, length), sub-
-string(start, end), toString(), trim().
--->
+<!-- WAP to demonstrate the use of various inbuilt string functions like charAt(), charCodeAt(), startsWith(), endsWith(), includes(), indexOf(), lastIndexOf(), match(), repeat(), replace("", ""), search(), split(), substr(start, length), sub-string(start, end), toString(), trim(). -->
+
 <!DOCTYPE html>
 <html>
   <head>
     <title>String Functions Demo</title>
-    <style>
-      .output {
-        margin: 10px 0;
-        padding: 5px;
-        border-bottom: 1px solid #ccc;
-      }
-    </style>
   </head>
   <body>
     <h2>String Functions Demonstration</h2>
-
     <script>
-      const text = prompt("Enter a text :", "Hello JavaScript World");
-      document.write(text);
+      const text = prompt("Enter a text:", "Hello JavaScript World");
 
+      document.write(`<p>Original Text: ${text}</p>`);
 
+      // charAt() & charCodeAt()
+      const pos = prompt("Enter position to get character:", "0");
+      document.write(`<p>charAt(${pos}): ${text.charAt(pos)} <br>`);
+      document.write(`charCodeAt(${pos}): ${text.charCodeAt(pos)} </p>`);
 
-      // charAt()
-      const pos = prompt(
-        "Enter position to get character from (0 to " +
-          (text.length - 1) +
-          "):",
-        "0"
-      );
+      // startsWith() & endsWith()
+      const startStr = prompt("Starts with?", "Hello");
+      const endStr = prompt("Ends with?", "World");
       document.write(
-        "<div class='output'><b>charAt(" +
-          pos +
-          "):</b> " +
-          text.charAt(pos) +
-          "</div>"
+        `<p>startsWith('${startStr}'): ${text.startsWith(startStr)} <br>`
       );
-
-
-
-
-      // charCodeAt()
-      document.write(
-        "<div class='output'><b>charCodeAt(" +
-          pos +
-          "):</b> " +
-          text.charCodeAt(pos) +
-          "</div>"
-      );
-
-
-
-      // startsWith() and endsWith()
-      const startStr = prompt(
-        "Enter string to check if text starts with:",
-        "Hello"
-      );
-      const endStr = prompt(
-        "Enter string to check if text ends with:",
-        "World"
-      );
-      document.write(
-        "<div class='output'><b>startsWith('" +
-          startStr +
-          "'):</b> " +
-          text.startsWith(startStr) +
-          "</div>"
-      );
-      document.write(
-        "<div class='output'><b>endsWith('" +
-          endStr +
-          "'):</b> " +
-          text.endsWith(endStr) +
-          "</div>"
-      );
-
-
-
+      document.write(`endsWith('${endStr}'): ${text.endsWith(endStr)} </p>`);
 
       // includes()
-      const searchStr = prompt("Enter string to search for:", "Script");
+      const searchStr = prompt("Search for:", "Script");
       document.write(
-        "<div class='output'><b>includes('" +
-          searchStr +
-          "'):</b> " +
-          text.includes(searchStr) +
-          "</div>"
+        `<p>includes('${searchStr}'): ${text.includes(searchStr)} </p>`
       );
 
-
-
-
-      // indexOf() and lastIndexOf()
-      const searchChar = prompt("Enter character to find position:", "l");
+      // indexOf() & lastIndexOf()
+      const searchChar = prompt("Find position of:", "l");
       document.write(
-        "<div class='output'><b>indexOf('" +
-          searchChar +
-          "'):</b> " +
-          text.indexOf(searchChar) +
-          "</div>"
+        `<p>indexOf('${searchChar}'): ${text.indexOf(searchChar)} <br>`
       );
       document.write(
-        "<div class='output'><b>lastIndexOf('" +
-          searchChar +
-          "'):</b> " +
-          text.lastIndexOf(searchChar) +
-          "</div>"
+        `lastIndexOf('${searchChar}'): ${text.lastIndexOf(searchChar)} </p>`
       );
-
-
-
 
       // split()
-      const splitChar = prompt("Enter character to split by:", " ");
+      const splitChar = prompt("Split by:", " ");
       document.write(
-        "<div class='output'><b>split('" +
-          splitChar +
-          "'):</b> " +
-          text.split(splitChar).join(", ") +
-          "</div>"
+        `<p>split('${splitChar}'): ${text.split(splitChar).join(", ")} </p>`
       );
 
-
-
-
-      // substr() and substring()
-      const start = prompt("Enter start position for substring:", "6");
+      // substr() & substring()
+      const start = prompt("Enter start position:", "6");
       const length = prompt("Enter length for substr:", "10");
       document.write(
-        "<div class='output'><b>substr(" +
-          start +
-          ", " +
-          length +
-          "):</b> " +
-          text.substr(start, length) +
-          "</div>"
+        `<p>substr(${start}, ${length}): ${text.substr(start, length)} <br>`
       );
       document.write(
-        "<div class='output'><b>substring(" +
-          start +
-          ", " +
-          (parseInt(start) + parseInt(length)) +
-          "):</b> " +
-          text.substring(start, parseInt(start) + parseInt(length)) +
-          "</div>"
+        `substring(${start}, ${
+          parseInt(start) + parseInt(length)
+        }): ${text.substring(start, parseInt(start) + parseInt(length))} </p>`
       );
-
-      
 
       // trim()
       const spacedText = prompt(
@@ -157,12 +64,7 @@ string(start, end), toString(), trim().
         "  trimmed  "
       );
       document.write(
-        "<div class='output'><b>Original:</b> '" + spacedText + "'</div>"
-      );
-      document.write(
-        "<div class='output'><b>After trim():</b> '" +
-          spacedText.trim() +
-          "'</div>"
+        `<p>Original: '${spacedText}' <br>After trim(): '${spacedText.trim()}'</p>`
       );
     </script>
   </body>

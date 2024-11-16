@@ -12,10 +12,19 @@ WAP to check whether the given number is palindrome or not
   <body>
     <h2>Palindrome Number Checker</h2>
 
-    <script>
-      const number = prompt("Enter a number to check if it's palindrome:");
+    <div id="output"></div>
 
-      function isPalindrome(num) {
+    <script>
+      const number = parseInt(
+        prompt("Enter a number to check if it's palindrome:")
+      );
+
+      document.getElementById("output").innerText = isPalindrome1(number)
+        ? `${number} is a palindrome number`
+        : `${number} is not a palindrome number`;
+
+      // using mathematical approach
+      function isPalindrome1(num) {
         const originalNum = num;
         let reversedNum = 0;
 
@@ -25,35 +34,16 @@ WAP to check whether the given number is palindrome or not
           num = Math.floor(num / 10);
         }
 
-        //jovo if else condition ma original and rev str check karavi ne return chhe k nai te kare chhe...
-        if (str === reversedNum) {
-          return true;
-        } else {
-          return false;
-        }
-
-        // return str === reversedNum;
-
-        //ane pachhi aa function jya call thay chhe tya pan aavi j rite one liner use karyu chhe jovo...
+        return originalNum === reversedNum;
       }
 
-      // aa moh-maya chhe
-      document.write("<div class='output'>");
-      document.write("<p><b>Number entered:</b> " + number + "</p>");
-      document.write(
-        "<p><b>Reversed number:</b> " +
-          number.split("").reverse().join("") +
-          "</p>"
-      );
-      document.write(
-        "<p><b>Result:</b> " +
-          number +
-          " is " +
-          // aahiya
-          (isPalindrome(number) ? "a palindrome" : "not a palindrome") +
-          "</p>"
-      );
-      document.write("</div>");
+      // using string approach
+      function isPalindrome2(num) {
+        const reversedNum = parseInt(
+          num.toString().split("").reverse().join("")
+        );
+        return num === reversedNum;
+      }
     </script>
   </body>
 </html>

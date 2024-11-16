@@ -1,44 +1,38 @@
-<!-- 
-WAP to print sum of first 'n' Natural number
-
-(1 + 2 + 3 + ... + n)
--->
+<!-- WAP to print sum of first 'n' Natural number (1 + 2 + 3 + ... + n) -->
 
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Sum of Natural Numbers</title>
     <link rel="stylesheet" href="all_at_once.css" />
   </head>
   <body>
     <h2>Sum of Natural Numbers</h2>
 
+    <div class="output">
+      <p><b>Number entered (n):</b> <span id="number"></span></p>
+      <p><b>Series:</b> <span id="series"></span></p>
+      <p><b>Sum:</b> <span id="sum"></span></p>
+    </div>
+
     <script>
-      let n = parseInt(
-        prompt("Enter a number :")
-      );
+      const n = parseInt(prompt("Enter a number:"));
 
       function calculateSum(num) {
-
-        // aapne varso pela aavu kaik kari gya ...ane clg ma pan e j karave chhe aapni pase 
-        // sum = n(n+1)/2
-
         return (num * (num + 1)) / 2;
       }
 
       const sum = calculateSum(n);
 
+      // Update HTML elements with the results
+      document.getElementById("number").textContent = n;
+      document.getElementById("sum").textContent = sum;
 
-      // sathe sathe ek one liner bonus [ agar apko iss stetion pe utar na he toh ticket lena padega ]
-      let series = Array.from({ length: n }, (_, i) => i + 1).join(" + ");
-
-      // aa moh-maya chhe
-      document.write("<div class='output'>");
-      document.write("<p><b>Number entered (n):</b> " + n + "</p>");
-      document.write("<p><b>Series:</b> " + series + "</p>");
-      document.write("<p><b>Sum:</b> " + sum + "</p>");
-      document.write("</div>");
-
+      // extra code Generate the series (1 + 2 + ... + n)
+      const series = Array.from({ length: n }, (_, i) => i + 1).join(" + ");
+      document.getElementById("series").textContent = series;
     </script>
   </body>
 </html>
