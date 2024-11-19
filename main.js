@@ -28,9 +28,10 @@ const sortPracticals = (practicals, direction) => {
 
 const toggleSort = () => {
   state.sortDirection = state.sortDirection === "asc" ? "desc" : "asc";
-  elements.sortButton.textContent = `Sort ${
-    state.sortDirection === "asc" ? "Descending" : "Ascending"
-  }`;
+  elements.sortButton.innerHTML =
+    state.sortDirection === "asc"
+      ? '<i class="fa-solid fa-caret-up"></i>'
+      : '<i class="fa-solid fa-caret-down"></i>';
 
   // Re-sort current view
   if (state.currentLab) {
