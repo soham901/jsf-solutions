@@ -6,74 +6,62 @@ WAP to demonstrate use of various inbuilt array functions
     sort
     reverse
 -->
+
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
-    <title>Array Functions Demo</title>
-    <link rel="stylesheet" href="Sub_ki_CSS.css" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Array Operations Demo</title>
+    <link rel="stylesheet" href="L3.css" />
   </head>
   <body>
-    <h2>Array Functions Demonstration</h2>
+    <h2>Array Operations Demonstration</h2>
+
+    <div class="output">
+      <p><strong>Operations Log:</strong></p>
+      <ul id="operationsLog"></ul>
+      <p><strong>Final Array:</strong> <span id="finalArray"></span></p>
+    </div>
 
     <script>
-      // example maate ek array lai ...
-      let fruits = ["apple", "banana", "orange"];
+      const arr = [];
+      const log = [];
 
-      // aana upper dhyan dyo ma
-      document.write("<div class='output'>");
-      document.write("<p><b>Original array:</b> " + fruits.join(", ") + "</p>");
+      // Push operations
+      log.push("Push Operations:");
+      arr.push(5);
+      log.push(`Pushed 5: [${arr}]`);
+      arr.push(3);
+      log.push(`Pushed 3: [${arr}]`);
+      arr.push(8);
+      log.push(`Pushed 8: [${arr}]`);
 
+      // Pop operation
+      log.push("Pop Operation:");
+      const popped = arr.pop();
+      log.push(`Popped ${popped}: [${arr}]`);
 
+      // Sort operation
+      log.push("Sort Operation:");
+      arr.push(1);
+      log.push(`Added 1: [${arr}]`);
+      const originalArray = [...arr];
+      log.push(`Original array: [${originalArray}]`);
+      arr.sort((a, b) => a - b);
+      log.push(`Sorted array: [${arr}]`);
 
-      // aapne pela joi a push function , [adds to end]
-      fruits.push("grape");
+      // Display operations log
+      const logList = document.getElementById("operationsLog");
+      log.forEach(entry => {
+        const li = document.createElement("li");
+        li.textContent = entry;
+        logList.appendChild(li);
+      });
 
-
-
-      //push karya pachhi no array chhe biju kai nai
-      document.write(
-        "<p><b>After push('grape'):</b> " + fruits.join(", ") + "</p>"
-      );
-
-      //////////////////////////////////////////////////////////
-
-      // shu remove karyu aapne te toh khabr padvi joi a ne , toh tene removed naam na variable ma store kari didho khali
-      //  -> [removes from end]
-      let removed = fruits.pop();
-
-
-
-      document.write("<p><b>After pop():</b> " + fruits.join(", ") + "</p>");
-      document.write("<p><b>Removed item:</b> " + removed + "</p>");
-
-
-      /////////////////////////////////////////////////////////
-
-      // aapne je java ane c ma jate loop ni help thi kari te j aa khali ek function thi kari aape chhe
-      fruits.sort();
-      document.write("<p><b>After sort():</b> " + fruits.join(", ") + "</p>");
-
-
-      // sort j chhe pan undhe thi sort kare aatle reverse
-      fruits.reverse();
-      document.write(
-        "<p><b>After reverse():</b> " + fruits.join(", ") + "</p>"
-      );
-      document.write("</div>");
-
-      
-
-      // have number na array upper experiment kari joi a
-      document.write("<div class='output'>");
-      let numbers = [5, 2, 8, 1, 9];
-      document.write("<p><b>Number array:</b> " + numbers.join(", ") + "</p>");
-
-      numbers.sort();
-      document.write("<p><b>After sort():</b> " + numbers.join(", ") + "</p>");
-
-      numbers.push(4);
-      document.write("<p><b>After push(4):</b> " + numbers.join(", ") + "</p>");
-      document.write("</div>");
+      // Display final array
+      document.getElementById("finalArray").textContent = 
+        `[${arr.join(", ")}]`;
     </script>
   </body>
 </html>
