@@ -1,147 +1,76 @@
 <!-- 
 Question: WAP using HTML, CSS, JavaScript to design advance calculator with GUI
-Explanation: Calculator with additional scientific operations
 -->
+
 <!DOCTYPE html>
-<html>
-<head>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Advanced Calculator</title>
-    <link rel="stylesheet" href="p3.css">
-</head>
-<body>
-    <h2>Advanced Calculator</h2>
-
-    <div class="calculator">
-        <input type="text" class="display" id="display" readonly>
+    <link rel="stylesheet" href="p3.css" />
+  </head>
+  <body>
+    <div class="container">
+      <div class="calculator scientific">
+        <div class="memory-display" id="memoryDisplay"></div>
+        <div class="display" id="display">0</div>
         <div class="buttons">
-            <button onclick="clearDisplay()">C</button>
-            <button onclick="calculateSquare()" class="scientific">x²</button>
-            <button onclick="calculateSquareRoot()" class="scientific">√</button>
-            <button onclick="calculateFactorial()" class="scientific">n!</button>
-            <button onclick="setOperator('+')" class="operator">+</button>
-            
-            <button onclick="appendNumber('7')">7</button>
-            <button onclick="appendNumber('8')">8</button>
-            <button onclick="appendNumber('9')">9</button>
-            <button onclick="calculatePower()" class="scientific">xʸ</button>
-            <button onclick="setOperator('-')" class="operator">-</button>
-            
-            <button onclick="appendNumber('4')">4</button>
-            <button onclick="appendNumber('5')">5</button>
-            <button onclick="appendNumber('6')">6</button>
-            <button onclick="calculatePercent()" class="scientific">%</button>
-            <button onclick="setOperator('*')" class="operator">×</button>
-            
-            <button onclick="appendNumber('1')">1</button>
-            <button onclick="appendNumber('2')">2</button>
-            <button onclick="appendNumber('3')">3</button>
-            <button onclick="calculate()" class="equals">=</button>
-            <button onclick="setOperator('/')" class="operator">÷</button>
-            
-            <button onclick="appendNumber('0')" style="grid-column: span 2;">0</button>
-            <button onclick="appendNumber('.')">.</button>
-            <button onclick="changeSign()" class="scientific">±</button>
-        </div>
-    </div>
+          <!-- Memory Operations
+          <button class="btn" onclick="memoryClear()">MC</button>
+          <button class="btn" onclick="memoryRecall()">MR</button>
+          <button class="btn" onclick="memoryAdd()">M+</button>
+          <button class="btn" onclick="memorySubtract()">M-</button>
+          <button class="btn" onclick="memoryStore()">MS</button> -->
 
-    <script>
-        let firstNumber = '';
-        let operator = '';
-        let newNumber = true;
-        
-        function appendNumber(num) {
-            let display = document.getElementById('display');
-            if (newNumber) {
-                display.value = num;
-                newNumber = false;
-            } else {
-                display.value += num;
-            }
-        }
-        
-        function setOperator(op) {
-            firstNumber = document.getElementById('display').value;
-            operator = op;
-            newNumber = true;
-        }
-        
-        function calculate() {
-            let secondNumber = document.getElementById('display').value;
-            let result = 0;
-            
-            let num1 = parseFloat(firstNumber);
-            let num2 = parseFloat(secondNumber);
-            
-            switch(operator) {
-                case '+': result = num1 + num2; break;
-                case '-': result = num1 - num2; break;
-                case '*': result = num1 * num2; break;
-                case '/':
-                    if (num2 === 0) {
-                        alert("Cannot divide by zero!");
-                        return;
-                    }
-                    result = num1 / num2;
-                    break;
-            }
-            
-            document.getElementById('display').value = result;
-            newNumber = true;
-        }
-        
-        function clearDisplay() {
-            document.getElementById('display').value = '';
-            firstNumber = '';
-            operator = '';
-            newNumber = true;
-        }
-        
-        function calculateSquare() {
-            let num = parseFloat(document.getElementById('display').value);
-            document.getElementById('display').value = num * num;
-            newNumber = true;
-        }
-        
-        function calculateSquareRoot() {
-            let num = parseFloat(document.getElementById('display').value);
-            if (num < 0) {
-                alert("Cannot calculate square root of negative number!");
-                return;
-            }
-            document.getElementById('display').value = Math.sqrt(num);
-            newNumber = true;
-        }
-        
-        function calculateFactorial() {
-            let num = parseInt(document.getElementById('display').value);
-            if (num < 0) {
-                alert("Cannot calculate factorial of negative number!");
-                return;
-            }
-            let result = 1;
-            for(let i = 2; i <= num; i++) {
-                result *= i;
-            }
-            document.getElementById('display').value = result;
-            newNumber = true;
-        }
-        
-        function calculatePower() {
-            firstNumber = document.getElementById('display').value;
-            operator = 'power';
-            newNumber = true;
-        }
-        
-        function calculatePercent() {
-            let num = parseFloat(document.getElementById('display').value);
-            document.getElementById('display').value = num / 100;
-            newNumber = true;
-        }
-        
-        function changeSign() {
-            let num = parseFloat(document.getElementById('display').value);
-            document.getElementById('display').value = -num;
-        }
-    </script>
-</body>
+          <!-- Scientific Operations -->
+          <button class="btn operator" onclick="calculateSquare()">x²</button>
+          <button class="btn operator" onclick="calculateSquareRoot()">
+            √
+          </button>
+          <button class="btn operator" onclick="calculateSin()">sin</button>
+          <button class="btn operator" onclick="calculateCos()">cos</button>
+          <button class="btn operator" onclick="calculateTan()">tan</button>
+
+          <!-- Standard Calculator Buttons -->
+          <button class="btn" onclick="clearDisplay()">C</button>
+          <button class="btn" onclick="deleteLastChar()">⌫</button>
+          <button class="btn operator" onclick="appendOperator('%')">%</button>
+          <button class="btn operator" onclick="calculatePower()">^</button>
+          <button class="btn operator" onclick="appendOperator('/')">/</button>
+
+          <button class="btn" onclick="appendNumber('7')">7</button>
+          <button class="btn" onclick="appendNumber('8')">8</button>
+          <button class="btn" onclick="appendNumber('9')">9</button>
+          <button class="btn operator" onclick="calculateLog()">log</button>
+          <button class="btn operator" onclick="appendOperator('*')">×</button>
+
+          <button class="btn" onclick="appendNumber('4')">4</button>
+          <button class="btn" onclick="appendNumber('5')">5</button>
+          <button class="btn" onclick="appendNumber('6')">6</button>
+          <button class="btn operator" onclick="calculateFactorial()">
+            n!
+          </button>
+          <button class="btn operator" onclick="appendOperator('-')">-</button>
+
+          <button class="btn" onclick="appendNumber('1')">1</button>
+          <button class="btn" onclick="appendNumber('2')">2</button>
+          <button class="btn" onclick="appendNumber('3')">3</button>
+          <button class="btn operator" onclick="toggleSign()">±</button>
+          <button class="btn operator" onclick="appendOperator('+')">+</button>
+
+          <button class="btn" onclick="appendNumber('0')">0</button>
+          <button class="btn" onclick="appendNumber('.')">.</button>
+          <button class="btn operator" onclick="calculatePi()">π</button>
+          <button
+            class="btn equals"
+            onclick="calculate()"
+          >
+            =
+          </button>
+        </div>
+      </div>
+    </div>
+    <script src="p3.js"></script>
+  </body>
 </html>

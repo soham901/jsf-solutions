@@ -10,6 +10,31 @@ body {
   font-family: "Arial", sans-serif;
 }
 
+.container {
+  width: 90%;
+  max-width: 600px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+/* Form Styles */
+.form-group {
+  margin-bottom: 1rem;
+}
+
+label {
+  display: block;
+  margin-bottom: 0.5rem;
+  color: #333;
+}
+.error {
+  color: #dc3545;
+  font-size: 0.875rem;
+  margin-top: 0.25rem;
+}
+
 h2 {
   font-family: "Roboto", sans-serif;
   color: #26547c;
@@ -17,7 +42,7 @@ h2 {
   text-align: center;
 }
 
-.form-container {
+.container {
   background-color: #f5f3f4;
   border: 1px solid #26547c;
   border-radius: 10px;
@@ -31,14 +56,8 @@ h2 {
   margin-bottom: 20px;
 }
 
-label {
-  display: block;
-  margin-bottom: 5px;
-  color: #26547c;
-  font-weight: bold;
-}
-
-input {
+input,
+select {
   width: calc(100% - 22px);
   padding: 10px;
   border: 1px solid #ddd;
@@ -61,6 +80,6 @@ button:hover {
   background-color: #c73e59;
 }
 
-.form-container > *:last-child {
+.container > *:last-child {
   margin-bottom: 0;
 }
