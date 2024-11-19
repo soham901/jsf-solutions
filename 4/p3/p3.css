@@ -1,73 +1,88 @@
 body {
-    background-color: #ebebeb;
-    color: #333;
-    margin: 0;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    font-family: 'Arial', sans-serif;
+  background-color: #ebebeb;
+  color: #333;
+  margin: 0;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-family: "Arial", sans-serif;
 }
 
 h2 {
-    color: #004e98;
-    margin-bottom: 2rem;
-    text-align: center;
+  color: #004e98;
+  margin-bottom: 2rem;
+  text-align: center;
 }
 
 .calculator {
-    background-color: #ffffff;
-    padding: 30px;
-    border: 1px solid #c0c0c0;
-    border-radius: 10px;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
-    min-width: 400px; /* Increased minimum width for more buttons */
+  background-color: #ffffff;
+  padding: 30px;
+  border: 1px solid #c0c0c0;
+  border-radius: 10px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+  min-width: 400px; 
 }
 
 .display {
-    width: 100%;
-    height: 40px;
-    margin-bottom: 10px;
-    text-align: right;
-    padding: 10px;
-    font-size: 24px;
-    border: 1px solid #c0c0c0;
-    border-radius: 5px;
+  width: 100%;
+  height: 40px;
+  margin-bottom: 10px;
+  text-align: right;
+  padding: 10px;
+  font-size: 24px;
+  border: 1px solid #c0c0c0;
+  border-radius: 5px;
 }
 
 .buttons {
-    display: grid;
-    grid-template-columns: repeat(5, 1fr); /* 5 columns */
-    gap: 10px;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 10px;
 }
 
 button {
-    padding: 15px;
-    font-size: 16px;
-    border: 1px solid #c0c0c0;
-    border-radius: 5px;
-    background-color: #ebebeb;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
+  padding: 15px;
+  font-size: 16px;
+  border: 1px solid #c0c0c0;
+  border-radius: 5px;
+  background-color: #ebebeb;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
 }
 
 button:hover {
-    background-color: #d3d3d3;
+  background-color: #d3d3d3;
 }
 
 .operator {
-    background-color: #ff6700;
-    color: white;
+  background-color: #ff6700;
+  color: white;
 }
 
 .equals {
-    background-color: #ff6700;
-    color: white;
-    grid-column: span 2;
+  background-color: #ff6700;
+  color: white;
+  grid-column: span 2;
+}
+
+.btn.equals:hover,
+.operator:hover {
+  background-color: #ff6600cb;
 }
 
 .scientific {
-    background-color: #ef8354; 
-    color: white;
+  max-width: 400px;
+}
+
+.scientific .buttons {
+  grid-template-columns: repeat(5, 1fr);
+}
+
+.memory-display {
+  font-size: 0.875rem;
+  color: #6c757d;
+  margin-bottom: 0.5rem;
+  text-align: right;
 }

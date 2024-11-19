@@ -1,47 +1,63 @@
-<!-- 
-WAP to read a numeric array from user and find maximum number
--->
+<!-- WAP to read a numeric array from user and find maximum number from it -->
+
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
-    <title>Find Maximum Number</title>
-    <link rel="stylesheet" href="Sub_ki_CSS.css" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Maximum Number Finder</title>
+    <link rel="stylesheet" href="L3.css" />
   </head>
   <body>
     <h2>Maximum Number Finder</h2>
 
+    <div class="output">
+      <p><strong>Numbers entered:</strong></p>
+      <ul id="numbersList"></ul>
+      <p><strong>Array:</strong> <span id="numbersArray"></span></p>
+      <p><strong>Maximum number:</strong> <span id="maxNumber"></span></p>
+      <p><strong>Steps:</strong></p>
+      <ul id="steps"></ul>
+    </div>
+
     <script>
-      //ketla num aapva mange chhe aapno "user"
-      const size = parseInt(prompt("How many numbers do you want to enter?"));
+      // Prompt user for array size
+      const size = parseInt(prompt("Enter the size of the array:"));
+      const numbers = [];
+      const steps = [];
+      let max = 0;
 
-      let numbers = [];
-
-      // ek ek kari ne leta jav...
+      // Input and processing phase
       for (let i = 0; i < size; i++) {
-        let num = parseInt(prompt("Enter number #" + (i + 1) + ":"));
-        // ane tene numbers naam na array ma add karta jav
+        const num = parseInt(prompt(`Enter number ${i + 1}:`));
         numbers.push(num);
-      }
-
-      // dharo k ...aatyare sauthi moto num array ma index zero upper j chhe [ kevu saru ]
-      let max = numbers[0];
-
-      // ha pan reality ma badhi vakhate peli index ma toh hase nai toh , ek ek kari badhi index upper jai ne puchhvanu bhai te aa number karta moto chho??
-      // joh ha toh hal bhai tu besi ja max naam na variable ma ,
-      // joh nai toh aagal vadho...
-      for (let i = 1; i < numbers.length; i++) {
-        if (numbers[i] > max) {
-          max = numbers[i];
+        steps.push(`Added ${num} to array`);
+        
+        if (num > max) {
+          max = num;
+          steps.push(`New maximum found: ${max}`);
         }
       }
 
-      // aa toh...
-      document.write("<div class='output'>");
-      document.write(
-        "<p><b>Numbers entered:</b> " + numbers.join(", ") + "</p>"
-      );
-      document.write("<p><b>Maximum number:</b> " + max + "</p>");
-      document.write("</div>");
+      // Update HTML content
+      const numbersList = document.getElementById("numbersList");
+      numbers.forEach((num, index) => {
+        const li = document.createElement("li");
+        li.textContent = `Number ${index + 1}: ${num}`;
+        numbersList.appendChild(li);
+      });
+
+      document.getElementById("numbersArray").textContent = 
+        `[${numbers.join(", ")}]`;
+      document.getElementById("maxNumber").textContent = max;
+
+      // Display steps
+      const stepsList = document.getElementById("steps");
+      steps.forEach(step => {
+        const li = document.createElement("li");
+        li.textContent = step;
+        stepsList.appendChild(li);
+      });
     </script>
   </body>
 </html>

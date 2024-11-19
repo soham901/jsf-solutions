@@ -1,37 +1,51 @@
-<!-- 
-WAP to create an array of countries, read values from user and print it
--->
+<!-- WAP to create an array of countries, read values of an array from user and print it -->
 
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Countries Array</title>
-    <link rel="stylesheet" href="Sub_ki_CSS.css" />
+    <link rel="stylesheet" href="L3.css" />
   </head>
   <body>
-    <h2>Countries Array</h2>
+    <h2>Countries Array Creator</h2>
+
+    <div class="output">
+      <p>
+        <strong>Number of countries:</strong> <span id="countryCount"></span>
+      </p>
+      <p><strong>Countries entered:</strong></p>
+      <ul id="countriesList"></ul>
+      <p><strong>Final Array:</strong> <span id="finalArray"></span></p>
+    </div>
 
     <script>
-      // ketli contry na naam tamne aavde chhe e toh puchhvu pade ne
-      const size = parseInt(prompt("How many countries do you want to enter?"));
+      // Prompt user for number of countries
+      const numCountries = parseInt(prompt("Enter the number of countries:"));
+      const countries = [];
 
-      // jetli pan contry hoy , badhi contry ne control karsu aa array ni andar
-      let countries = [];
-
-      // aava dyo jetli pan contry hoy , aaj tumhara bhai sabhi contry print kardega
-      for (let i = 0; i < size; i++) {
-        let country = prompt("Enter country #" + (i + 1) + ":");
+      // Input phase
+      for (let i = 0; i < numCountries; i++) {
+        const country = prompt(`Enter country ${i + 1}:`);
         countries.push(country);
       }
 
-      // aa toh ...
-      document.write("<div class='output'>");
-      document.write("<p><b>Number of countries:</b> " + size + "</p>");
-      document.write("<p><b>Countries entered:</b></p>");
-      for (let i = 0; i < countries.length; i++) {
-        document.write("<p>" + (i + 1) + ". " + countries[i] + "</p>");
-      }
-      document.write("</div>");
+      // Update HTML content
+      document.getElementById("countryCount").textContent = numCountries;
+
+      // Create list of countries
+      const countriesList = document.getElementById("countriesList");
+      countries.forEach((country, index) => {
+        const li = document.createElement("li");
+        li.textContent = `Country ${index + 1}: ${country}`;
+        countriesList.appendChild(li);
+      });
+
+      // Display final array
+      document.getElementById("finalArray").textContent = `[${countries.join(
+        ", "
+      )}]`;
     </script>
   </body>
 </html>

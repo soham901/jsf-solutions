@@ -1,107 +1,134 @@
-<!-- 
-WAP to prepare student registration form and validate it using JavaScript
--->
+<!-- 1. WAP to prepare student registration form and validate it using JavaScript. -->
 
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Student Registration</title>
     <link rel="stylesheet" href="p1.css" />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap"
-      rel="stylesheet"
-    />
   </head>
   <body>
-    <h2>Student Registration Form</h2>
+    <div class="container">
+      <form id="registrationForm" onsubmit="return validateForm(event)">
+        <h2>Student Registration Form</h2>
 
-    <div class="form-container">
-      <form onsubmit="return validateForm()">
         <div class="form-group">
-          <label>Full Name:</label>
-          <input type="text" name="name" />
+          <label for="fullName">Full Name:</label>
+          <input type="text" id="fullName" name="fullName" />
+          <div class="error" id="fullNameError"></div>
         </div>
 
         <div class="form-group">
-          <label>Email:</label>
-          <input type="text" name="email" />
+          <label for="email">Email:</label>
+          <input type="email" id="email" name="email" />
+          <div class="error" id="emailError"></div>
         </div>
 
         <div class="form-group">
-          <label>Phone Number:</label>
-          <input type="text" name="phone" />
+          <label for="phone">Phone Number:</label>
+          <input type="tel" id="phone" name="phone" />
+          <div class="error" id="phoneError"></div>
         </div>
 
         <div class="form-group">
-          <label>Age:</label>
-          <input type="number" name="age" />
+          <label for="dob">Date of Birth:</label>
+          <input type="date" id="dob" name="dob" />
+          <div class="error" id="dobError"></div>
+        </div>
+
+        <div class="form-group">
+          <label for="course">Course:</label>
+          <select id="course" name="course">
+            <option value="">Select a course</option>
+            <option value="computer-science">Computer Science</option>
+            <option value="engineering">Engineering</option>
+            <option value="business">Business</option>
+            <option value="arts">Arts</option>
+          </select>
+          <div class="error" id="courseError"></div>
         </div>
 
         <button type="submit">Register</button>
       </form>
     </div>
-
     <script>
-      function validateForm() {
-        const form = document.forms[0];
-        const name = form.name.value;
-        const email = form.email.value;
-        const phone = form.phone.value;
-        const age = form.age.value;
+      function validateForm(event) {
+        event.preventDefault();
+        let isValid = true;
 
-        // Validate name (check if empty or contains numbers)
-        if (name === "") {
-          alert("Please enter your name");
-          return false;
+        // Reset all error messages
+        const errorElements = document.querySelectorAll(".error");
+        errorElements.forEach((element) => (element.textContent = ""));
+
+        // Validate Full Name
+        const fullName = document.getElementById("fullName").value.trim();
+        if (!fullName) {
+          document.getElementById("fullNameError").textContent =
+            "Full name is required";
+          isValid = false;
+        } else if (!/^[a-zA-Z\s]{2,50}$/.test(fullName)) {
+          document.getElementById("fullNameError").textContent =
+            "Please enter a valid name (2-50 characters, letters only)";
+          isValid = false;
         }
 
-        // Simple check for numbers in name
-        for (let i = 0; i < name.length; i++) {
-          if ("0123456789".includes(name[i])) {
-            alert("Name should not contain numbers");
-            return false;
+        // Validate Email
+        const email = document.getElementById("email").value.trim();
+        if (!email) {
+          document.getElementById("emailError").textContent =
+            "Email is required";
+          isValid = false;
+        } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+          document.getElementById("emailError").textContent =
+            "Please enter a valid email address";
+          isValid = false;
+        }
+
+        // Validate Phone Number
+        const phone = document.getElementById("phone").value.trim();
+        if (!phone) {
+          document.getElementById("phoneError").textContent =
+            "Phone number is required";
+          isValid = false;
+        } else if (!/^\d{10}$/.test(phone)) {
+          document.getElementById("phoneError").textContent =
+            "Please enter a valid 10-digit phone number";
+          isValid = false;
+        }
+
+        // Validate Date of Birth
+        const dob = document.getElementById("dob").value;
+        if (!dob) {
+          document.getElementById("dobError").textContent =
+            "Date of birth is required";
+          isValid = false;
+        } else {
+          const dobDate = new Date(dob);
+          const today = new Date();
+          const age = today.getFullYear() - dobDate.getFullYear();
+          if (age < 16 || age > 100) {
+            document.getElementById("dobError").textContent =
+              "Age must be between 16 and 100 years";
+            isValid = false;
           }
         }
 
-        // Validate email (simple check for @ and .)
-        if (email === "") {
-          alert("Please enter your email");
-          return false;
-        }
-        if (!email.includes("@") || !email.includes(".")) {
-          alert("Please enter a valid email address");
-          return false;
+        // Validate Course Selection
+        const course = document.getElementById("course").value;
+        if (!course) {
+          document.getElementById("courseError").textContent =
+            "Please select a course";
+          isValid = false;
         }
 
-        // Validate phone (check length and numbers only)
-        if (phone === "") {
-          alert("Please enter your phone number");
-          return false;
-        }
-        if (phone.length !== 10) {
-          alert("Phone number should be 10 digits");
-          return false;
-        }
-        for (let i = 0; i < phone.length; i++) {
-          if (!"0123456789".includes(phone[i])) {
-            alert("Phone number should only contain digits");
-            return false;
-          }
+        // If form is valid, show success message
+        if (isValid) {
+          alert("Registration successful!");
+          document.getElementById("registrationForm").reset();
         }
 
-        // Validate age
-        if (age === "") {
-          alert("Please enter your age");
-          return false;
-        }
-        if (age < 15 || age > 30) {
-          alert("Age should be between 15 and 30");
-          return false;
-        }
-
-        // If all validations pass
-        alert("Registration successful!");
-        return false; // Prevent form submission for this example
+        return isValid;
       }
     </script>
   </body>
