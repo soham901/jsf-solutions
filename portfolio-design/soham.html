@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Darshan University</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: Arial, sans-serif;
+      }
+
+      header {
+        padding: 1rem 2rem;
+        background: white;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      }
+
+      .logo {
+        display: flex;
+        align-items: center;
+      }
+
+      .logo img {
+        height: 80px;
+      }
+
+      nav ul {
+        display: flex;
+        list-style: none;
+        gap: 2rem;
+      }
+
+      nav a {
+        text-decoration: none;
+        color: #333;
+      }
+
+      .hero {
+        overflow: hidden;
+        border-radius: 0.8rem;
+        background: #f5f5f5;
+        margin: 2rem;
+        min-height: 400px;
+        display: flex;
+        align-items: center;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .hero-content {
+        position: absolute;
+        color: white;
+        text-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+        right: 6rem;
+        max-width: 600px;
+        margin-left: 2rem;
+        z-index: 2;
+      }
+
+      .hero h1 {
+        font-size: 2.5rem;
+        margin-bottom: 1rem;
+      }
+
+      .hero p {
+        font-size: 1.1rem;
+        color: #f5f5f5;
+        line-height: 1.6;
+      }
+
+      .hero-image {
+        width: 100%;
+        height: 36rem;
+        background-image: url("./computer-8779039_1280.jpg");
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center;
+        filter: blur(5px) brightness(0.7);
+      }
+
+      .programs {
+        display: flex;
+        justify-content: space-around;
+        padding: 2rem;
+        gap: 1rem;
+      }
+
+      .program-box {
+        border: 1px solid #ddd;
+        padding: 1rem;
+        width: 22%;
+        min-height: 150px;
+        border-radius: 4px;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="logo">
+        <img src="./logo.png" alt="Darshan University Logo" />
+      </div>
+      <nav>
+        <ul>
+          <li><a href="#">Home</a></li>
+          <li><a href="#">About</a></li>
+          <li><a href="#">Services</a></li>
+          <li><a href="#">My Work</a></li>
+          <li><a href="#">Contact</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <section class="hero">
+      <div class="hero-content">
+        <h1>Hello! I am Web Developer</h1>
+        <p>
+          I use HTML and CSS to convert webpage designs into beautiful and
+          efficient websites.
+        </p>
+      </div>
+      <div class="hero-image"></div>
+    </section>
+
+    <section class="programs">
+      <div class="program-box">Program 1</div>
+      <div class="program-box">Program 2</div>
+      <div class="program-box">Program 3</div>
+      <div class="program-box">Program 4</div>
+    </section>
+  </body>
+</html>
