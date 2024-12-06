@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Portfolio Home</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Nunito:wght@400&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: Arial, sans-serif;
+      }
+
+      a {
+        text-decoration: none;
+        color: inherit;
+      }
+
+      .hero {
+        text-align: center;
+        background: linear-gradient(to bottom right, #494fcd, #8e92e7);
+        color: #fff;
+        height: 370px;
+      }
+
+      .hero-content {
+        display: flex;
+        justify-content: space-between;
+        height: 300px;
+        width: 100%;
+        box-shadow: -1px 2px 2px 2px #a3a3a3;
+      }
+
+      .div1,
+      .div2 {
+        width: 50%;
+        margin: auto 0;
+      }
+
+      .profile-img {
+        border: 2px solid #000;
+        width: 90px;
+        height: 90px;
+        border-radius: 50px;
+      }
+
+      .div2 {
+        font-size: 1.1rem;
+        max-width: 600px;
+      }
+
+      .div2 h2 {
+        color: #ffd700;
+        margin-bottom: 10px;
+      }
+
+      .div2 p,
+      .line {
+        font-family: Nunito, serif;
+      }
+
+      .navbar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 20px;
+        background-color: #000000b0;
+      }
+
+      .logo {
+        font-size: 1.5rem;
+        font-weight: bold;
+      }
+
+      .nav-links {
+        list-style: none;
+        display: flex;
+        gap: 20px;
+      }
+
+      .nav-links li {
+        font-size: 1rem;
+      }
+
+      .nav-links a {
+        color: #fff;
+        transition: color 0.3s;
+      }
+
+      .nav-links a:hover {
+        color: #ffd700;
+      }
+
+      .hero-content h1 {
+        font-size: 2.5rem;
+        margin-bottom: 10px;
+      }
+
+      .hero-content p {
+        margin-bottom: 20px;
+        font-size: 1.2rem;
+      }
+
+      .highlight {
+        color: #ffd700;
+        text-shadow: 2px 2px #000;
+      }
+
+      .btn {
+        display: inline-block;
+        padding: 10px 20px;
+        background: #ffd700;
+        color: #000;
+        font-weight: bold;
+        border-radius: 5px;
+      }
+
+      .active {
+        text-decoration: underline;
+        color: #fc3;
+      }
+
+      .projects-section {
+        padding: 2rem 0;
+      }
+
+      .projects-section h2 {
+        color: #4e54c8;
+        text-align: center;
+        margin-bottom: 1rem;
+      }
+
+      .section-divider {
+        width: 70%;
+        margin: 0 auto;
+        border: none;
+        border-top: 1px solid #000;
+      }
+
+      .project-list {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 50px;
+        justify-content: center;
+        padding: 2rem 0;
+      }
+
+      .project-card {
+        width: 300px;
+        padding: 20px;
+        background: #f5f5f5;
+        border-radius: 8px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        text-align: justify;
+      }
+
+      .project-card h3 {
+        margin-bottom: 10px;
+        color: #4e54c8;
+      }
+
+      .project-card p {
+        color: #555;
+      }
+    </style>
+  </head>
+  <body>
+    <header class="hero">
+      <nav class="navbar">
+        <div class="logo">MyPortfolio</div>
+        <ul class="nav-links">
+          <li><a href="#about" class="active">Home</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#services">Services</a></li>
+          <li><a href="#projects">Projects</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+      <div class="hero-content">
+        <div class="div1">
+          <img
+            src="https://avatar.iran.liara.run/public/28"
+            alt="Profile"
+            class="profile-img"
+          />
+          <h1>Hi, I'm <span class="highlight">John Doe</span></h1>
+          <p class="line">
+            A passionate <span class="highlight">Web Developer</span> and
+            Designer
+          </p>
+          <a href="#projects" class="btn">View My Work</a>
+        </div>
+        <div class="div2">
+          <section id="about">
+            <h2 class="highlight">About Me</h2>
+            <p>
+              I'm a web developer with experience in building modern and
+              responsive websites. I enjoy crafting beautiful user experiences
+              and solving challenging problems.
+            </p>
+          </section>
+        </div>
+      </div>
+    </header>
+    <section id="projects" class="projects-section">
+      <h2>Projects</h2>
+      <hr class="section-divider" />
+      <div class="project-list">
+        <div class="project-card">
+          <h3>Solar Water Heater Platform</h3>
+          <p>
+            A website that allows users to purchase solar water heaters online.
+            Admin can manage orders and respond to user inquiries through the
+            platform.
+          </p>
+        </div>
+        <div class="project-card">
+          <h3>Agricultural Technology Hub</h3>
+          <p>
+            An informative platform dedicated to advancing agricultural
+            practices by showcasing the latest technologies and trends, offering
+            real-time data and interactive elements for an engaging user
+            experience.
+          </p>
+        </div>
+        <div class="project-card">
+          <h3>Online Shopping Platform</h3>
+          <p>
+            A specification for an online shopping platform, detailing features
+            like product browsing, secure payment processing, and user account
+            management to ensure a seamless shopping experience.
+          </p>
+        </div>
+      </div>
+      <hr class="section-divider" />
+    </section>
+  </body>
+</html>

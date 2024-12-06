@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Student Registration</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="container">
+      <form id="registrationForm" onsubmit="validateForm(event)">
+        <h2>Student Registration Form</h2>
+        <div class="form-group">
+          <label for="fullName">Full Name:</label>
+          <input type="text" id="fullName" name="fullName" />
+          <div class="error" id="fullNameError"></div>
+        </div>
+        <div class="form-group">
+          <label for="email">Email:</label>
+          <input type="email" id="email" name="email" />
+          <div class="error" id="emailError"></div>
+        </div>
+        <div class="form-group">
+          <label for="phone">Phone:</label>
+          <input type="tel" id="phone" name="phone" />
+          <div class="error" id="phoneError"></div>
+        </div>
+        <div class="form-group">
+          <label for="dob">Date of Birth:</label>
+          <input type="date" id="dob" name="dob" />
+          <div class="error" id="dobError"></div>
+        </div>
+        <div class="form-group">
+          <label for="course">Course:</label>
+          <select id="course" name="course">
+            <option disabled selected>Select a course</option>
+            <option value="b-tech">B.Tech</option>
+            <option value="m-tech">M.Tech</option>
+            <option value="diploma">Diploma</option>
+            <option value="phd">PhD</option>
+            <option value="other">Other</option>
+          </select>
+          <div class="error" id="courseError"></div>
+        </div>
+        <button type="submit">Register</button>
+      </form>
+    </div>
+    <script src="./script.js"></script>
+  </body>
+</html>
