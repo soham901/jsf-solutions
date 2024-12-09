@@ -1,76 +1,145 @@
-<!-- 
-Question: WAP using HTML, CSS, JavaScript to design advance calculator with GUI
--->
-
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Advanced Calculator</title>
-    <link rel="stylesheet" href="p3.css" />
+    <style>
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+        font-family: Arial, sans-serif;
+      }
+      .calculator {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 10px;
+        max-width: 300px;
+        text-align: center;
+      }
+      .display {
+        grid-column: span 4;
+        height: 50px;
+        text-align: right;
+        padding: 10px;
+        font-size: 1.5em;
+        border: 1px solid #ccc;
+      }
+      button {
+        padding: 15px;
+        font-size: 1em;
+        border: 1px solid #ccc;
+        cursor: pointer;
+      }
+    </style>
   </head>
   <body>
-    <div class="container">
-      <div class="calculator scientific">
-        <div class="memory-display" id="memoryDisplay"></div>
-        <div class="display" id="display">0</div>
-        <div class="buttons">
-          <!-- Memory Operations
-          <button class="btn" onclick="memoryClear()">MC</button>
-          <button class="btn" onclick="memoryRecall()">MR</button>
-          <button class="btn" onclick="memoryAdd()">M+</button>
-          <button class="btn" onclick="memorySubtract()">M-</button>
-          <button class="btn" onclick="memoryStore()">MS</button> -->
-
-          <!-- Scientific Operations -->
-          <button class="btn operator" onclick="calculateSquare()">x²</button>
-          <button class="btn operator" onclick="calculateSquareRoot()">
-            √
-          </button>
-          <button class="btn operator" onclick="calculateSin()">sin</button>
-          <button class="btn operator" onclick="calculateCos()">cos</button>
-          <button class="btn operator" onclick="calculateTan()">tan</button>
-
-          <!-- Standard Calculator Buttons -->
-          <button class="btn" onclick="clearDisplay()">C</button>
-          <button class="btn" onclick="deleteLastChar()">⌫</button>
-          <button class="btn operator" onclick="appendOperator('%')">%</button>
-          <button class="btn operator" onclick="calculatePower()">^</button>
-          <button class="btn operator" onclick="appendOperator('/')">/</button>
-
-          <button class="btn" onclick="appendNumber('7')">7</button>
-          <button class="btn" onclick="appendNumber('8')">8</button>
-          <button class="btn" onclick="appendNumber('9')">9</button>
-          <button class="btn operator" onclick="calculateLog()">log</button>
-          <button class="btn operator" onclick="appendOperator('*')">×</button>
-
-          <button class="btn" onclick="appendNumber('4')">4</button>
-          <button class="btn" onclick="appendNumber('5')">5</button>
-          <button class="btn" onclick="appendNumber('6')">6</button>
-          <button class="btn operator" onclick="calculateFactorial()">
-            n!
-          </button>
-          <button class="btn operator" onclick="appendOperator('-')">-</button>
-
-          <button class="btn" onclick="appendNumber('1')">1</button>
-          <button class="btn" onclick="appendNumber('2')">2</button>
-          <button class="btn" onclick="appendNumber('3')">3</button>
-          <button class="btn operator" onclick="toggleSign()">±</button>
-          <button class="btn operator" onclick="appendOperator('+')">+</button>
-
-          <button class="btn" onclick="appendNumber('0')">0</button>
-          <button class="btn" onclick="appendNumber('.')">.</button>
-          <button class="btn operator" onclick="calculatePi()">π</button>
-          <button
-            class="btn equals"
-            onclick="calculate()"
-          >
-            =
-          </button>
-        </div>
-      </div>
+    <div class="calculator">
+      <div class="display" id="display">0</div>
+      <button onclick="clearDisplay()">C</button>
+      <button onclick="deleteLast()">⌫</button>
+      <button onclick="appendOperator('%')">%</button>
+      <button onclick="appendOperator('/')">/</button>
+      <button onclick="appendNumber('7')">7</button>
+      <button onclick="appendNumber('8')">8</button>
+      <button onclick="appendNumber('9')">9</button>
+      <button onclick="appendOperator('*')">x</button>
+      <button onclick="appendNumber('4')">4</button>
+      <button onclick="appendNumber('5')">5</button>
+      <button onclick="appendNumber('6')">6</button>
+      <button onclick="appendOperator('-')">-</button>
+      <button onclick="appendNumber('1')">1</button>
+      <button onclick="appendNumber('2')">2</button>
+      <button onclick="appendNumber('3')">3</button>
+      <button onclick="appendOperator('+')">+</button>
+      <button onclick="appendNumber('0')">0</button>
+      <button onclick="appendNumber('.')">.</button>
+      <button onclick="calculate()">=</button>
+      <button onclick="calculateSquareRoot()">√</button>
+      <button onclick="calculateSquare()">x²</button>
+      <button onclick="calculateSin()">sin</button>
+      <button onclick="calculateCos()">cos</button>
+      <button onclick="calculateTan()">tan</button>
     </div>
-    <script src="p3.js"></script>
+
+    <script>
+      const display = document.getElementById("display");
+      let displayValue = "0";
+
+      function updateDisplay() {
+        display.textContent = displayValue;
+      }
+
+      function appendNumber(num) {
+        displayValue = displayValue === "0" ? num : displayValue + num;
+        updateDisplay();
+      }
+
+      function appendOperator(operator) {
+        if (!/[+\-*/%]$/.test(displayValue)) {
+          displayValue += operator;
+          updateDisplay();
+        }
+      }
+
+      function clearDisplay() {
+        displayValue = "0";
+        updateDisplay();
+      }
+
+      function deleteLast() {
+        displayValue = displayValue.slice(0, -1) || "0";
+        updateDisplay();
+      }
+
+      function calculate() {
+        try {
+          displayValue = eval(displayValue.replace(/x/g, "*")).toString();
+          updateDisplay();
+        } catch {
+          displayValue = "Error";
+          updateDisplay();
+        }
+      }
+
+      function calculateSquareRoot() {
+        const num = parseFloat(displayValue);
+        displayValue = num >= 0 ? Math.sqrt(num).toString() : "Error";
+        updateDisplay();
+      }
+
+      function calculateSquare() {
+        const num = parseFloat(displayValue);
+        displayValue = (num * num).toString();
+        updateDisplay();
+      }
+
+      function calculateSin() {
+        const num = parseFloat(displayValue);
+        displayValue = Math.sin((num * Math.PI) / 180)
+          .toFixed(4)
+          .toString();
+        updateDisplay();
+      }
+
+      function calculateCos() {
+        const num = parseFloat(displayValue);
+        displayValue = Math.cos((num * Math.PI) / 180)
+          .toFixed(4)
+          .toString();
+        updateDisplay();
+      }
+
+      function calculateTan() {
+        const num = parseFloat(displayValue);
+        displayValue = Math.tan((num * Math.PI) / 180)
+          .toFixed(4)
+          .toString();
+        updateDisplay();
+      }
+    </script>
   </body>
 </html>

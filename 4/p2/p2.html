@@ -1,90 +1,85 @@
-<!-- 
-WAP using HTML, CSS, JavaScript to design simple calculator with GUI
--->
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Simple Calculator</title>
-    <link rel="stylesheet" href="p2.css" />
+    <style>
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+        font-family: Arial, sans-serif;
+      }
+      .calculator {
+        display: grid;
+        grid-template-rows: auto repeat(5, 1fr);
+        grid-template-columns: repeat(4, 1fr);
+        gap: 5px;
+        width: 300px;
+      }
+      #display {
+        grid-column: span 4;
+        text-align: right;
+        padding: 10px;
+        border: 1px solid #c0c0c0;
+      }
+      button {
+        padding: 20px;
+        border: 1px solid #c0c0c0;
+        cursor: pointer;
+      }
+      .equals {
+        grid-column: span 2;
+      }
+    </style>
   </head>
   <body>
-    <div class="container">
-      <div class="calculator">
-        <div class="display" id="display">0</div>
-        <div class="buttons">
-          <button class="btn" onclick="clearDisplay()">C</button>
-          <button class="btn" onclick="deleteLastChar()">bks</button>
-          <button class="btn operator" onclick="appendOperator('%')">%</button>
-          <button class="btn operator" onclick="appendOperator('/')">/</button>
-          <button class="btn" onclick="appendNumber('7')">7</button>
-          <button class="btn" onclick="appendNumber('8')">8</button>
-          <button class="btn" onclick="appendNumber('9')">9</button>
-          <button class="btn operator" onclick="appendOperator('×')">×</button>
-          <button class="btn" onclick="appendNumber('4')">4</button>
-          <button class="btn" onclick="appendNumber('5')">5</button>
-          <button class="btn" onclick="appendNumber('6')">6</button>
-          <button class="btn operator" onclick="appendOperator('-')">-</button>
-          <button class="btn" onclick="appendNumber('1')">1</button>
-          <button class="btn" onclick="appendNumber('2')">2</button>
-          <button class="btn" onclick="appendNumber('3')">3</button>
-          <button class="btn operator" onclick="appendOperator('+')">+</button>
-          <button class="btn" onclick="appendNumber('0')">0</button>
-          <button class="btn" onclick="appendNumber('.')">.</button>
-          <button class="btn equals" onclick="calculate()">=</button>
-        </div>
-      </div>
+    <div class="calculator">
+      <div id="display">0</div>
+      <button onclick="clearDisplay()">C</button>
+      <button onclick="deleteLastChar()">←</button>
+      <button onclick="appendInput('%')">%</button>
+      <button onclick="appendInput('/')">/</button>
+      <button onclick="appendInput('7')">7</button>
+      <button onclick="appendInput('8')">8</button>
+      <button onclick="appendInput('9')">9</button>
+      <button onclick="appendInput('*')">*</button>
+      <button onclick="appendInput('4')">4</button>
+      <button onclick="appendInput('5')">5</button>
+      <button onclick="appendInput('6')">6</button>
+      <button onclick="appendInput('-')">-</button>
+      <button onclick="appendInput('1')">1</button>
+      <button onclick="appendInput('2')">2</button>
+      <button onclick="appendInput('3')">3</button>
+      <button onclick="appendInput('+')">+</button>
+      <button onclick="appendInput('0')">0</button>
+      <button onclick="appendInput('.')">.</button>
+      <button class="equals" onclick="calculate()">=</button>
     </div>
     <script>
-      let displayValue = "0";
-      let lastOperator = "";
-      let newNumber = true;
+      let display = document.getElementById("display");
 
-      function updateDisplay() {
-        document.getElementById("display").textContent = displayValue;
-      }
-
-      function appendNumber(num) {
-        if (newNumber) {
-          displayValue = num;
-          newNumber = false;
-        } else {
-          displayValue = displayValue === "0" ? num : displayValue + num;
-        }
-        updateDisplay();
-      }
-
-      function appendOperator(operator) {
-        if (!displayValue.endsWith(operator)) {
-          displayValue += operator;
-          newNumber = false;
-        }
-        updateDisplay();
+      function appendInput(value) {
+        display.textContent =
+          display.textContent === "0" ? value : display.textContent + value;
       }
 
       function clearDisplay() {
-        displayValue = "0";
-        newNumber = true;
-        updateDisplay();
+        display.textContent = "0";
       }
 
       function deleteLastChar() {
-        displayValue = displayValue.slice(0, -1) || "0";
-        updateDisplay();
+        display.textContent = display.textContent.slice(0, -1) || "0";
       }
 
       function calculate() {
         try {
-          // Replace × with * for evaluation
-          let expression = displayValue.replace(/×/g, "*");
-          displayValue = eval(expression).toString();
-          newNumber = true;
-          updateDisplay();
-        } catch (error) {
-          displayValue = "Error";
-          newNumber = true;
-          updateDisplay();
+          display.textContent = eval(display.textContent) || "0";
+        } catch {
+          display.textContent = "Error";
         }
       }
     </script>

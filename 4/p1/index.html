@@ -1,10 +1,27 @@
-<!DOCTYPE html>
-<html lang="en">
+<html>
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Student Registration</title>
-    <link rel="stylesheet" href="./styles.css" />
+    <style>
+      .container {
+        max-width: 400px;
+        margin: 0 auto;
+      }
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+      }
+      form {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+      }
+      .form-group {
+        display: flex;
+        flex-direction: column;
+      }
+    </style>
   </head>
   <body>
     <div class="container">
@@ -13,22 +30,22 @@
         <div class="form-group">
           <label for="fullName">Full Name:</label>
           <input type="text" id="fullName" name="fullName" />
-          <div class="error" id="fullNameError"></div>
+          <div class="error" id="fullName-err"></div>
         </div>
         <div class="form-group">
           <label for="email">Email:</label>
           <input type="email" id="email" name="email" />
-          <div class="error" id="emailError"></div>
+          <div class="error" id="email-err"></div>
         </div>
         <div class="form-group">
           <label for="phone">Phone:</label>
           <input type="tel" id="phone" name="phone" />
-          <div class="error" id="phoneError"></div>
+          <div class="error" id="phone-err"></div>
         </div>
         <div class="form-group">
           <label for="dob">Date of Birth:</label>
           <input type="date" id="dob" name="dob" />
-          <div class="error" id="dobError"></div>
+          <div class="error" id="dob-err"></div>
         </div>
         <div class="form-group">
           <label for="course">Course:</label>
@@ -40,11 +57,65 @@
             <option value="phd">PhD</option>
             <option value="other">Other</option>
           </select>
-          <div class="error" id="courseError"></div>
+          <div class="error" id="course-err"></div>
         </div>
         <button type="submit">Register</button>
       </form>
     </div>
-    <script src="./script.js"></script>
+    <script>
+      const fields = [
+        {
+          id: "fullName",
+          condition: (v) => /^[a-zA-Z\s]{2,50}$/.test(v),
+          error: "Enter a valid name (2-50 letters).",
+        },
+        {
+          id: "email",
+          condition: (v) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v),
+          error: "Enter a valid email.",
+        },
+        {
+          id: "phone",
+          condition: (v) => /^\d{10}$/.test(v),
+          error: "Enter a valid 10-digit phone number.",
+        },
+        {
+          id: "dob",
+          condition: (v) => {
+            const age = new Date().getFullYear() - new Date(v).getFullYear();
+            return age >= 16 && age <= 100;
+          },
+          error: "Age must be between 16 and 100.",
+        },
+        {
+          id: "course",
+          condition: (v) => v,
+          error: "Select a course.",
+        },
+      ];
+
+      function validateForm(event) {
+        event.preventDefault();
+        document
+          .querySelectorAll(".error")
+          .forEach((el) => (el.textContent = ""));
+        const form = new FormData(event.target);
+        let valid = true;
+        fields.forEach((f) => {
+          const value = form.get(f.id);
+          if (!f.condition(value)) {
+            document.getElementById(`${f.id}-err`).textContent = f.error;
+            valid = false;
+          }
+        });
+        if (valid) {
+          alert("Form submitted successfully!");
+          const formData = new FormData(event.target);
+          formData.forEach((value, key) => {
+            console.log(`${key}: ${value}`);
+          });
+        }
+      }
+    </script>
   </body>
 </html>
