@@ -21,6 +21,10 @@
         display: flex;
         flex-direction: column;
       }
+      .error {
+        color: red;
+        font-size: 0.9rem;
+      }
     </style>
   </head>
   <body>
@@ -29,28 +33,35 @@
         <h2>Student Registration Form</h2>
         <div class="form-group">
           <label for="fullName">Full Name:</label>
-          <input type="text" id="fullName" name="fullName" />
+          <input type="text" id="fullName" name="fullName" required />
           <div class="error" id="fullName-err"></div>
         </div>
         <div class="form-group">
           <label for="email">Email:</label>
-          <input type="email" id="email" name="email" />
+          <input type="email" id="email" name="email" required />
           <div class="error" id="email-err"></div>
         </div>
         <div class="form-group">
           <label for="phone">Phone:</label>
-          <input type="tel" id="phone" name="phone" />
+          <input
+            type="tel"
+            id="phone"
+            name="phone"
+            required
+            pattern="\d{10}"
+            title="Enter a 10-digit phone number."
+          />
           <div class="error" id="phone-err"></div>
         </div>
         <div class="form-group">
           <label for="dob">Date of Birth:</label>
-          <input type="date" id="dob" name="dob" />
+          <input type="date" id="dob" name="dob" required />
           <div class="error" id="dob-err"></div>
         </div>
         <div class="form-group">
           <label for="course">Course:</label>
-          <select id="course" name="course">
-            <option disabled selected>Select a course</option>
+          <select id="course" name="course" required>
+            <option disabled selected value="">Select a course</option>
             <option value="b-tech">B.Tech</option>
             <option value="m-tech">M.Tech</option>
             <option value="diploma">Diploma</option>
@@ -63,57 +74,64 @@
       </form>
     </div>
     <script>
-      const fields = [
-        {
-          id: "fullName",
-          condition: (v) => /^[a-zA-Z\s]{2,50}$/.test(v),
-          error: "Enter a valid name (2-50 letters).",
-        },
-        {
-          id: "email",
-          condition: (v) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v),
-          error: "Enter a valid email.",
-        },
-        {
-          id: "phone",
-          condition: (v) => /^\d{10}$/.test(v),
-          error: "Enter a valid 10-digit phone number.",
-        },
-        {
-          id: "dob",
-          condition: (v) => {
-            const age = new Date().getFullYear() - new Date(v).getFullYear();
-            return age >= 16 && age <= 100;
-          },
-          error: "Age must be between 16 and 100.",
-        },
-        {
-          id: "course",
-          condition: (v) => v,
-          error: "Select a course.",
-        },
-      ];
-
       function validateForm(event) {
         event.preventDefault();
-        document
-          .querySelectorAll(".error")
-          .forEach((el) => (el.textContent = ""));
-        const form = new FormData(event.target);
+        const errors = document.querySelectorAll(".error");
+        errors.forEach((el) => (el.textContent = ""));
+
+        const form = event.target;
+        const fullName = form.fullName.value.trim();
+        const email = form.email.value.trim();
+        const phone = form.phone.value.trim();
+        const dob = form.dob.value;
+        const course = form.course.value;
+
         let valid = true;
-        fields.forEach((f) => {
-          const value = form.get(f.id);
-          if (!f.condition(value)) {
-            document.getElementById(`${f.id}-err`).textContent = f.error;
+
+        if (
+          fullName.length < 2 ||
+          fullName.length > 50 ||
+          !/^[a-zA-Z\s]+$/.test(fullName)
+        ) {
+          document.getElementById("fullName-err").textContent =
+            "Enter a valid name (2-50 letters).";
+          valid = false;
+        }
+
+        if (!/^\S+@\S+\.\S+$/.test(email)) {
+          document.getElementById("email-err").textContent =
+            "Enter a valid email.";
+          valid = false;
+        }
+
+        if (!/\d{10}/.test(phone)) {
+          document.getElementById("phone-err").textContent =
+            "Enter a valid 10-digit phone number.";
+          valid = false;
+        }
+
+        if (dob) {
+          const age = new Date().getFullYear() - new Date(dob).getFullYear();
+          if (age < 16 || age > 100) {
+            document.getElementById("dob-err").textContent =
+              "Age must be between 16 and 100.";
             valid = false;
           }
-        });
+        } else {
+          document.getElementById("dob-err").textContent =
+            "Please enter your date of birth.";
+          valid = false;
+        }
+
+        if (!course) {
+          document.getElementById("course-err").textContent =
+            "Select a course.";
+          valid = false;
+        }
+
         if (valid) {
           alert("Form submitted successfully!");
-          const formData = new FormData(event.target);
-          formData.forEach((value, key) => {
-            console.log(`${key}: ${value}`);
-          });
+          console.log({ fullName, email, phone, dob, course });
         }
       }
     </script>
