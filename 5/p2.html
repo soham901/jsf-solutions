@@ -1,24 +1,23 @@
 <!-- 2. WAP for following effect: If the mouse  is over heading, change  font color to "red" and if the mouse goes out of the heading change it to "black". -->
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="../common.css" />
-    <title>Document</title>
-  </head>
+<html>
   <body>
     <h1 id="heading">Heading</h1>
+
     <script>
-      const heading = document.getElementById("heading");
+      function changeColorOnHover() {
+        document.getElementById("heading").style.color = "red";
+      }
 
-      heading.addEventListener("mouseover", function () {
-        heading.style.color = "red";
-      });
+      function resetColor() {
+        document.getElementById("heading").style.color = "black";
+      }
 
-      heading.addEventListener("mouseout", function () {
-        heading.style.color = "black";
-      });
+      document
+        .getElementById("heading")
+        .addEventListener("mouseover", changeColorOnHover);
+      document
+        .getElementById("heading")
+        .addEventListener("mouseout", resetColor);
     </script>
   </body>
 </html>

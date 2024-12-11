@@ -1,24 +1,19 @@
 <!-- 1. WAP to change background color on click of button. -->
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="../common.css" />
-    <title>Document</title>
-  </head>
+<html>
   <body>
-    <button id="btn">Click Me</button>
+    <button onclick="changeBg()">Click Me</button>
     <script>
-      document.getElementById("btn").addEventListener("click", function () {
-        // simple color change
-        // document.body.style.backgroundColor = "red";
+      let isYellow = false;
 
-        // random color
-        document.body.style.backgroundColor = `#${Math.floor(
-          Math.random() * 16777215
-        ).toString(16)}`;
-      });
+      function changeBg() {
+        if (isYellow) {
+          document.body.style.backgroundColor = "white";
+          isYellow = false;
+        } else {
+          document.body.style.backgroundColor = "yellow";
+          isYellow = true;
+        }
+      }
     </script>
   </body>
 </html>

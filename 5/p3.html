@@ -1,20 +1,14 @@
 <!-- 3. WAP to print current date and time on click of "Date and Time" button. -->
 
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="../common.css" />
-    <title>Document</title>
-  </head>
+<html>
   <body>
-    <button id="btn">Date and Time</button>
+    <button onclick="showDateTime()">Date and Time</button>
+
     <script>
-      document.getElementById("btn").addEventListener("click", function () {
-        const date = new Date();
-        alert(date.toLocaleString());
-      });
+      function showDateTime() {
+        const currentDate = new Date();
+        alert(currentDate.toLocaleString());
+      }
     </script>
   </body>
 </html>

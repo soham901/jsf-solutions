@@ -1,13 +1,6 @@
 <!-- 6. WAP to design a form using HTML and JavaScript that asks the user to enter his date of birth and on clicking the Calculate Button it calls the function that calculates how many days are left in your birthday. -->
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="../common.css" />
-    <title>Birthday Countdown</title>
-  </head>
-  <body style="gap: 1rem">
+<html>
+  <body>
     <p>Enter your date of birth</p>
     <input type="date" id="dob" />
     <button id="btn">Calculate Days</button>
@@ -18,19 +11,16 @@
         const dob = new Date(document.getElementById("dob").value);
         const today = new Date();
 
-        // Set birthday to this year's date
         let nextBirthday = new Date(
           today.getFullYear(),
           dob.getMonth(),
           dob.getDate()
         );
 
-        // If the birthday has already passed this year, set it to next year
         if (today > nextBirthday) {
           nextBirthday.setFullYear(today.getFullYear() + 1);
         }
 
-        // Calculate the days left
         const diff = nextBirthday - today;
         // convert it to days            MS    S    M    H
         const days = Math.ceil(diff / (1000 * 60 * 60 * 24));
