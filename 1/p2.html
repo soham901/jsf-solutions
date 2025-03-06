@@ -1,24 +1,17 @@
-<!-- WAP to concat two or more strings -->
-
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
-    <title>String Concatenation</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
   </head>
   <body>
-    <h2>String Concatenation Methods</h2>
     <script>
-      const str1 = prompt("Enter first string:", "Hello");
-      const str2 = prompt("Enter second string:", "World");
+      const a = "Hello";
+      const b = "World";
+      const c = "Xyz";
 
-      // Concatenation methods
-      document.write(`${str1} ${str2}<br>`); // Template Literals
-      document.write(str1 + " " + str2 + "<br>"); // Using + operator
-      document.write(str1.concat(" ", str2) + "<br>"); // Using concat()
-
-      const firstName = prompt("Enter first name:", "Babu");
-      const lastName = prompt("Enter last name:", "Rao");
-      document.write(`${firstName} ${lastName}`); // Template Literals for full name
+      document.write(a.substr(2, 3));
     </script>
   </body>
 </html>

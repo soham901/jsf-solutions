@@ -1,0 +1,16 @@
+{
+  "name": "jokes-ai",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "dev": "node index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "@google/generative-ai": "^0.22.0",
+    "express": "^4.21.2"
+  }
+}

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let num = [];
+        let n = parseInt(prompt("Enter no. of elements"));
+        for(i=0;i<n;i++)
+        {
+            let b = parseInt(prompt("Enter number"+(i+1)+" here: "));
+            num.push(b);
+        }
+        document.write("Array without sorted: "+num+"<br>");
+        for(i=0;i<n;i++)
+        {
+            for(j=i+1;j<n;j++)
+            {
+                if(num[i]>num[j])
+                {
+                    let temp = num[i];
+                    num[i] = num[j];
+                    num[j] = temp;
+                }
+            }
+        }
+        document.write("Sorted Array is: "+num);
+    </script>
+</body>
+</html>

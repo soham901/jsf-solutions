@@ -1,0 +1,15 @@
+<script type="text/javascript">
+  a = parseInt(prompt("Enter count"));
+  b = [];
+  temp = 0;
+  for (i = 0; i < a; i++) {
+    b[i] = parseInt(prompt("Enter Number:"));
+  }
+
+  for (i = 0; i < a; i++) {
+    if (temp < b[i]) {
+      temp = b[i];
+    }
+  }
+  document.write(temp);
+</script>

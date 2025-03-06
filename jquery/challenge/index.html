@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dynamic Points Display</title>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        text-align: center;
+        margin: 50px;
+      }
+      #points-display {
+        display: none;
+        margin: 20px auto;
+        background-color: #007bff;
+        color: white;
+        font-size: 24px;
+        line-height: 100px;
+        text-align: center;
+        border-radius: 10px;
+      }
+      button {
+        padding: 10px 20px;
+        font-size: 16px;
+        margin: 10px;
+        cursor: pointer;
+        border: none;
+        border-radius: 5px;
+      }
+      #reveal-btn {
+        background-color: #28a745;
+        color: white;
+      }
+      #reset-btn {
+        background-color: #dc3545;
+        color: white;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Generate Random Points</h1>
+    <button id="reveal-btn">Generate Points</button>
+    <button id="reset-btn">Reset</button>
+    <div id="points-display">0</div>
+
+    <script>
+      $(document).ready(function () {
+        // Function to handle points generation
+        const generatePoints = () => Math.floor(Math.random() * 100) + 1;
+
+        // Reveal button logic
+        $("#reveal-btn").click(function () {
+          const points = generatePoints(); // Get random points
+          const newSize = points * 2; // Scale the box size
+          $("#points-display")
+            .text(points) // Update text
+            .css({
+              width: newSize + "px",
+              height: newSize + "px",
+            })
+            .fadeIn(500); // Fade in animation
+        });
+
+        // Reset button logic
+        $("#reset-btn").click(function () {
+          $("#points-display").fadeOut(500, function () {
+            $(this).text("0").css({ width: "100px", height: "100px" });
+          });
+        });
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      let a = 5,
+        b = 10;
+      let x = a,
+        y = b;
+
+      while (b != 0) {
+        let t = b;
+        b = a % b;
+        a = t;
+      }
+
+      document.write("GCD : ", a + "<br>");
+      document.write("LCM : ", (x * y) / a);
+    </script>
+  </body>
+</html>

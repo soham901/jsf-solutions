@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Basic carousel - jCarousel Examples</title>
+  </head>
+  <style>
+    .jcarousel-wrapper {
+      margin: 20px auto;
+      position: relative;
+      border: 10px solid #fff;
+      width: 600px;
+      height: 400px;
+      -webkit-border-radius: 5px;
+      -moz-border-radius: 5px;
+      border-radius: 5px;
+      -webkit-box-shadow: 0 0 2px #999;
+      -moz-box-shadow: 0 0 2px #999;
+      box-shadow: 0 0 2px #999;
+    }
+
+    .jcarousel-wrapper .photo-credits {
+      position: absolute;
+      right: 15px;
+      bottom: 0;
+      font-size: 13px;
+      color: #fff;
+      text-shadow: 0 0 1px rgba(0, 0, 0, 0.85);
+      opacity: 0.66;
+    }
+
+    .jcarousel-wrapper .photo-credits a {
+      color: #fff;
+    }
+
+    /** Carousel **/
+
+    .jcarousel {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .jcarousel ul {
+      width: 10000em;
+      position: relative;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    .jcarousel li {
+      float: left;
+    }
+
+    /** Carousel Controls **/
+
+    .jcarousel-control-prev,
+    .jcarousel-control-next {
+      position: absolute;
+      top: 200px;
+      width: 30px;
+      height: 30px;
+      text-align: center;
+      background: #4e443c;
+      color: #fff;
+      text-decoration: none;
+      text-shadow: 0 0 1px #000;
+      font: 24px/27px Arial, sans-serif;
+      -webkit-border-radius: 30px;
+      -moz-border-radius: 30px;
+      border-radius: 30px;
+      -webkit-box-shadow: 0 0 2px #999;
+      -moz-box-shadow: 0 0 2px #999;
+      box-shadow: 0 0 2px #999;
+    }
+
+    .jcarousel-control-prev {
+      left: -50px;
+    }
+
+    .jcarousel-control-next {
+      right: -50px;
+    }
+
+    .jcarousel-control-prev:hover span,
+    .jcarousel-control-next:hover span {
+      display: block;
+    }
+
+    .jcarousel-control-prev.inactive,
+    .jcarousel-control-next.inactive {
+      opacity: 0.5;
+      cursor: default;
+    }
+
+    /** Carousel Pagination **/
+
+    .jcarousel-pagination {
+      position: absolute;
+      bottom: 0;
+      left: 15px;
+    }
+
+    .jcarousel-pagination a {
+      text-decoration: none;
+      display: inline-block;
+
+      font-size: 11px;
+      line-height: 14px;
+      min-width: 14px;
+
+      background: #fff;
+      color: #4e443c;
+      border-radius: 14px;
+      padding: 3px;
+      text-align: center;
+
+      margin-right: 2px;
+
+      opacity: 0.75;
+    }
+
+    .jcarousel-pagination a.active {
+      background: #4e443c;
+      color: #fff;
+      opacity: 1;
+      text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.75);
+    }
+  </style>
+  <body>
+    <div class="wrapper">
+      <h1>Basic carousel</h1>
+
+      <p>
+        This example shows how to setup a basic carousel with prev/next controls
+        and pagination.
+      </p>
+
+      <div class="jcarousel-wrapper">
+        <div class="jcarousel">
+          <ul>
+            <li>
+              <img
+                src="https://images.unsplash.com/photo-1734375181552-cfa83d404033?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                width="600"
+                height="400"
+                alt=""
+              />
+            </li>
+            <li>
+              <img
+                src="https://plus.unsplash.com/premium_photo-1728044138824-be1f80079bfc?q=80&w=1632&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                width="600"
+                height="400"
+                alt=""
+              />
+            </li>
+            <li>
+              <img
+                src="https://plus.unsplash.com/premium_photo-1728044138824-be1f80079bfc?q=80&w=1632&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                width="600"
+                height="400"
+                alt=""
+              />
+            </li>
+            <li>
+              <img
+                src="../_shared/img/img4.jpg"
+                width="600"
+                height="400"
+                alt=""
+              />
+            </li>
+            <li>
+              <img
+                src="../_shared/img/img5.jpg"
+                width="600"
+                height="400"
+                alt=""
+              />
+            </li>
+            <li>
+              <img
+                src="../_shared/img/img6.jpg"
+                width="600"
+                height="400"
+                alt=""
+              />
+            </li>
+          </ul>
+        </div>
+
+        <p class="photo-credits">
+          Photos by <a href="http://www.mw-fotografie.de">Marc Wiegelmann</a>
+        </p>
+
+        <a href="#" class="jcarousel-control-prev">&lsaquo;</a>
+        <a href="#" class="jcarousel-control-next">&rsaquo;</a>
+
+        <p class="jcarousel-pagination"></p>
+      </div>
+    </div>
+
+    <script
+      src="https://code.jquery.com/jquery-3.7.1.min.js"
+      integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
+      crossorigin="anonymous"
+    ></script>
+
+    <script>
+      (function ($) {
+        $(function () {
+          $(".jcarousel").jcarousel();
+
+          $(".jcarousel-control-prev")
+            .on("jcarouselcontrol:active", function () {
+              $(this).removeClass("inactive");
+            })
+            .on("jcarouselcontrol:inactive", function () {
+              $(this).addClass("inactive");
+            })
+            .jcarouselControl({
+              target: "-=1",
+            });
+
+          $(".jcarousel-control-next")
+            .on("jcarouselcontrol:active", function () {
+              $(this).removeClass("inactive");
+            })
+            .on("jcarouselcontrol:inactive", function () {
+              $(this).addClass("inactive");
+            })
+            .jcarouselControl({
+              target: "+=1",
+            });
+
+          $(".jcarousel-pagination")
+            .on("jcarouselpagination:active", "a", function () {
+              $(this).addClass("active");
+            })
+            .on("jcarouselpagination:inactive", "a", function () {
+              $(this).removeClass("active");
+            })
+            .jcarouselPagination();
+        });
+      })(jQuery);
+    </script>
+
+    <script type="text/javascript" src="./jquery.jcarousel.js"></script>
+  </body>
+</html>

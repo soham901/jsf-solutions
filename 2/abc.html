@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      let arr = [];
+
+      let n = parseInt(prompt());
+
+      for (let i = 0; i < n; i++) {
+        arr.push(parseInt(prompt()));
+      }
+
+      // find maximum
+      let max = arr[0];
+
+      for (let i = 0; i < arr.length; i++) {
+        if (max < arr[i]) {
+          max = arr[i];
+        }
+      }
+
+      document.write(arr + "<br>");
+      document.write(max);
+    </script>
+  </body>
+</html>
+
+absent : A1 101,104,114,119

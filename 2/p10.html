@@ -8,46 +8,23 @@
     <link rel="stylesheet" href="all_at_once.css" />
   </head>
   <body>
-    <h2>Least Common Multiple (LCM) Calculator</h2>
-
-    <!-- Output area for the values -->
-    <div class="output">
-      <p><strong>First number:</strong> <span id="firstNumber"></span></p>
-      <p><strong>Second number:</strong> <span id="secondNumber"></span></p>
-      <p><strong>LCM:</strong> <span id="lcmResult"></span></p>
-    </div>
-
     <script>
       // Prompt user for input numbers
       const firstNumber = parseInt(prompt("Enter the first number:"));
       const secondNumber = parseInt(prompt("Enter the second number:"));
 
       // Function to find the LCM using the GCD method
-      function findGCD(a, b) {
-        while (b !== 0) {
-          const remainder = a % b;
-          a = b;
-          b = remainder;
-        }
-        return a;
+      let gcd = 0;
+      let b = secondNumber,
+        a = firstNumber;
+      while (b !== 0) {
+        const remainder = a % b;
+        a = b;
+        b = remainder;
       }
+      gcd = a;
 
-      function findLCM(a, b) {
-        return (a * b) / findGCD(a, b);
-      }
-
-      // Calculate the LCM
-      const lcmResult = findLCM(firstNumber, secondNumber);
-
-      // Update HTML content with results
-      document.getElementById("firstNumber").textContent = firstNumber;
-      document.getElementById("secondNumber").textContent = secondNumber;
-      document.getElementById("lcmResult").textContent = lcmResult;
-
-      // examples
-      // 4, 5 => 20
-      // 6, 8 => 24
-      // 15, 20 => 60
+      console.log((a * b) / gcd);
     </script>
   </body>
 </html>

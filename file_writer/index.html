@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <input type="text" name="" id="text" />
+    <button onclick="storeData()">Submit</button>
+
+    <script>
+      function storeData() {
+        const text = document.getElementById("text").value;
+
+        // call api
+        fetch("http://localhost:3000/?text=" + text)
+          .then((res) => res.json())
+          .then((data) => {
+            const status = 200;
+
+            // check response
+            if (status == 200) {
+              alert("Your data submitted");
+            } else {
+              alert("Something Went Wrong");
+            }
+          });
+      }
+    </script>
+  </body>
+</html>
